@@ -1,19 +1,16 @@
-import { site } from "@/lib/site";
+import { CinematicIntro } from "@/components/scenes/CinematicIntro";
 
 /**
- * Provisional placeholder home page.
+ * Home page — renders Scene 01 (the cinematic TV scroll experience).
  *
- * Intentionally minimal — it exists only to validate that the app builds,
- * hydrates and renders. The cinematic TV, video, hill and other scenes will
- * be introduced in later phases; nothing animated or interactive lives here yet.
+ * This stays a Server Component; all client-side behavior lives inside the
+ * `CinematicIntro` scene component. No placeholder copy or decorative UI is
+ * rendered here — the video is the sole protagonist.
  */
 export default function Home() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
-      <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-        {site.name}
-      </h1>
-      <p className="text-foreground/60 text-base sm:text-lg">{site.tagline}</p>
+    <main className="bg-background">
+      <CinematicIntro />
     </main>
   );
 }

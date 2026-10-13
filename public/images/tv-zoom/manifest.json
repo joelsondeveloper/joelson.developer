@@ -1,0 +1,21 @@
+{
+  "source": "tv-zoom.mp4",
+  "fps": 24,
+  "duration": 8,
+  "variants": [
+    {
+      "name": "desktop",
+      "width": 1280,
+      "quality": 78,
+      "frameCount": 192,
+      "bytes": 10080918
+    },
+    {
+      "name": "mobile",
+      "width": 768,
+      "quality": 76,
+      "frameCount": 192,
+      "bytes": 4608058
+    }
+  ]
+}

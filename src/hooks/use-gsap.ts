@@ -40,13 +40,14 @@ export function useGsap<T extends HTMLElement = HTMLDivElement>(
 ): RefObject<T | null> {
   const { scope, respectReducedMotion = true, dependencies = [] } = options;
   const prefersReducedMotion = usePrefersReducedMotion();
+  const skipAnimation = respectReducedMotion && prefersReducedMotion;
 
   const internalRef = useRef<T>(null);
   const scopeRef = scope ?? internalRef;
 
   useIsomorphicLayoutEffect(() => {
     // Respect the user's motion preference: build no animations at all.
-    if (respectReducedMotion && prefersReducedMotion) {
+    if (skipAnimation) {
       return;
     }
 
@@ -59,7 +60,7 @@ export function useGsap<T extends HTMLElement = HTMLDivElement>(
     };
     // `setup` is intentionally excluded so animations are driven solely by the
     // caller-controlled `dependencies` (mirrors @gsap/react's useGSAP pattern).
-  }, [scopeRef, prefersReducedMotion, respectReducedMotion, ...dependencies]);
+  }, [scopeRef, skipAnimation, ...dependencies]);
 
   return scopeRef;
 }

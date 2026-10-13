@@ -1,0 +1,156 @@
+/* Cinematic editorial overlay. Every visual exit is driven by the scene timeline. */
+.intro-overlay {
+  --intro-ink: #f6eddf;
+  --intro-dark-ink: #273746;
+  position: absolute;
+  inset: 0;
+  color: var(--intro-ink);
+  pointer-events: none;
+  isolation: isolate;
+}
+.intro-overlay a { pointer-events: auto; }
+.intro-overlay a:focus-visible { outline: 2px solid var(--intro-ink); outline-offset: 7px; }
+.intro-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgb(21 31 46 / 31%), transparent 47%), linear-gradient(180deg, rgb(34 48 78 / 22%), transparent 58%, rgb(22 29 27 / 15%));
+}
+.intro-header { position: absolute; top: 4.8%; left: 4.8%; right: 4.8%; display: flex; justify-content: space-between; align-items: flex-start; }
+.vhs-indicator { font-family: var(--font-geist-mono), monospace; text-shadow: 0 1px 10px rgb(12 20 31 / 30%); }
+.vhs-play { display: block; font-size: clamp(18px, 1.62vw, 28px); font-weight: 500; letter-spacing: -0.055em; line-height: 1; }
+.vhs-play span { display: inline-block; margin-left: 0.25em; font-size: 0.78em; }
+.vhs-clock { display: grid; gap: 0.2em; margin-top: 1.1em; font-size: clamp(9px, 0.82vw, 14px); letter-spacing: 0.12em; line-height: 1.15; }
+.intro-navigation { display: flex; gap: clamp(20px, 2.4vw, 42px); padding-top: 0.4em; list-style: none; font: 400 clamp(10px, 0.77vw, 13px)/1.5 var(--font-geist-mono), monospace; letter-spacing: 0.11em; color: var(--intro-dark-ink); }
+.intro-navigation span { pointer-events: auto; transition: color 180ms ease; }
+.intro-navigation span:hover { color: #111b28; }
+.intro-presentation { position: absolute; left: 10%; top: 28%; width: 29%; text-shadow: 0 2px 15px rgb(16 27 37 / 24%); }
+.intro-eyebrow { display: inline-block; padding-bottom: 0.1em; border-bottom: 1px solid rgb(246 237 223 / 40%); font: 400 clamp(11px, 0.83vw, 15px)/1.5 var(--font-geist-mono), monospace; letter-spacing: 0.13em; }
+.intro-name { position: relative; margin: 0.02em 0 0 -0.12em; font-family: var(--font-intro-script), cursive; font-size: clamp(68px, 6.9vw, 124px); font-weight: 400; line-height: 1.12; letter-spacing: -0.055em; transform: rotate(-5deg); }
+.intro-name span { display: block; }
+.intro-description { margin: 0.3em 0 0 3.1vw; width: max-content; max-width: calc(100% - 3.1vw); font: 400 clamp(10px, 0.77vw, 14px)/1.6 var(--font-geist-mono), monospace; letter-spacing: 0.12em; }
+.intro-description::after { content: ""; display: block; width: 45%; margin-top: 0.4em; border-top: 1px solid rgb(246 237 223 / 42%); }
+.intro-polaroids { position: absolute; inset: 0; }
+.polaroid { position: absolute; width: clamp(76px, 5.8vw, 108px); }
+.polaroid-print { position: relative; padding: 5.5% 5.5% 16%; background: #eee9db; box-shadow: 2px 5px 14px rgb(21 26 31 / 24%); transform: rotate(var(--polaroid-rotation)); }
+.polaroid-print::after { content: ""; position: absolute; inset: 0; opacity: 0.11; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23534d43' filter='url(%23n)' opacity='.35' d='M0 0h100v100H0z'/%3E%3C/svg%3E"); pointer-events: none; }
+.polaroid-image { overflow: hidden; aspect-ratio: 1.03; background: #4c5551; }
+.polaroid-image img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.17) saturate(0.78) contrast(0.96); }
+.polaroid-tape { position: absolute; z-index: 1; top: -9px; left: 24%; width: 55%; height: 17px; transform: rotate(-7deg); background: rgb(228 222 208 / 47%); clip-path: polygon(2% 0, 97% 3%, 100% 94%, 0 100%); }
+.polaroid-caption { position: absolute; font-family: var(--font-intro-hand), cursive; font-size: clamp(14px, 1.04vw, 19px); font-weight: 500; letter-spacing: 0.065em; line-height: 1.2; white-space: nowrap; text-shadow: 0 1px 8px rgb(18 22 24 / 45%); }
+.polaroid-caption span { display: inline-block; padding-bottom: 2px; border-bottom: 1px solid rgb(246 237 223 / 65%); transform: rotate(-6deg); }
+.polaroid-arrow { position: absolute; width: 45px; height: 34px; stroke: currentColor; stroke-width: 1.25; stroke-linecap: round; opacity: 0.8; }
+.polaroid--projects { left: 36.4%; top: 24.7%; }
+.polaroid--projects .polaroid-caption { left: 111%; top: 16%; }
+.polaroid--projects .polaroid-arrow { left: 0; top: 28px; }
+.polaroid--experience { left: 59.6%; top: 26.3%; }
+.polaroid--experience .polaroid-caption { left: 88%; top: 102%; }
+.polaroid--experience .polaroid-arrow { left: -54px; top: 1px; transform: rotate(-95deg); }
+.polaroid--about { left: 34.7%; top: 48%; }
+.polaroid--about .polaroid-caption { left: -6%; top: 119%; }
+.polaroid--about .polaroid-arrow { left: 92%; top: -17px; transform: rotate(170deg); }
+.polaroid--contact { left: 60.6%; top: 50%; }
+.polaroid--contact .polaroid-caption { left: 68%; top: 117%; }
+.polaroid--contact .polaroid-arrow { left: -28px; top: -21px; transform: rotate(-50deg); }
+.intro-editorial { position: absolute; left: 84%; top: 40.6%; right: 3.5%; color: #2d352e; font: 500 clamp(9px, 0.63vw, 12px)/1.45 var(--font-geist-mono), monospace; letter-spacing: 0.06em; }
+.editorial-rule { display: block; width: 100%; margin-top: 0.8em; border-top: 1px solid rgb(53 56 42 / 48%); }
+.intro-signature { position: absolute; right: 7.8%; bottom: 13%; font: 400 clamp(22px, 1.7vw, 32px)/0.93 var(--font-intro-hand), cursive; letter-spacing: 0.015em; transform: rotate(-6deg); text-shadow: 0 2px 10px rgb(12 20 21 / 70%); }
+.intro-signature p::after { content: ""; display: block; width: 75%; margin-top: 0.45em; border-top: 1px solid rgb(246 237 223 / 70%); }
+.intro-scroll { position: absolute; left: 50%; bottom: 4.7%; transform: translateX(-50%); }
+.scroll-indicator { display: grid; justify-items: center; gap: 8px; text-shadow: 0 1px 8px #202a23; }
+.scroll-indicator span { font: 400 clamp(8px, 0.62vw, 11px)/1.5 var(--font-geist-mono), monospace; letter-spacing: 0.1em; white-space: nowrap; }
+.scroll-mouse { width: 29px; height: 47px; stroke: currentColor; stroke-width: 1.3; }
+.scroll-chevron { width: 17px; height: 10px; stroke: currentColor; stroke-width: 1.2; }
+.intro-analog { position: absolute; inset: 0; }
+.viewfinder-corner { position: absolute; width: clamp(19px, 1.8vw, 32px); height: clamp(19px, 1.8vw, 32px); border-color: rgb(249 230 226 / 83%); border-style: solid; border-width: 0; }
+.corner-tl { top: 3.5%; left: 2%; border-top-width: 1.5px; border-left-width: 1.5px; }
+.corner-tr { top: 3.5%; right: 2%; border-top-width: 1.5px; border-right-width: 1.5px; }
+.corner-bl { bottom: 3.8%; left: 2%; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+.corner-br { bottom: 3.8%; right: 2%; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+.tracking-line { position: absolute; height: 1px; opacity: 0.25; background: linear-gradient(90deg, transparent 0 37%, #6eedec 39%, #fdf0c6 41%, #e880b0 43%, transparent 46% 82%, #9bddd9 87%, transparent); }
+.tracking-line--top { top: 9.5%; left: 8%; right: 0; }
+.tracking-line--bottom { bottom: 3.8%; left: 72%; right: 0; }
+.vhs-record { position: absolute; left: 4.8%; bottom: 4.5%; font: 400 9px/1.3 var(--font-geist-mono), monospace; letter-spacing: 0.09em; opacity: 0.6; }
+.vhs-record span { font-size: 6px; }
+.intro-analog-entry::after { content: ""; position: absolute; inset: 0; opacity: 0.02; background: repeating-linear-gradient(0deg, rgb(247 243 232 / 55%) 0 1px, transparent 1px 4px); }
+
+@media (min-width: 768px) and (max-aspect-ratio: 6/5) {
+  .intro-presentation { left: 7%; top: 15%; width: 42%; }
+  .intro-name { font-size: 92px; }
+  .intro-description { margin-left: 0; font-size: 11px; }
+  .polaroid--projects { left: 20%; top: 47%; }
+  .polaroid--experience { left: 72%; top: 24%; }
+  .polaroid--about { left: 15%; top: 65%; }
+  .polaroid--contact { left: 76%; top: 58%; }
+  .intro-editorial { left: 70%; top: 76%; right: 6%; font-size: 10px; color: var(--intro-ink); text-shadow: 0 1px 8px #1c3027; }
+}
+@media (max-width: 767px) {
+  .intro-header { top: 5%; left: 7%; right: 7%; }
+  .vhs-play { font-size: 19px; }
+  .vhs-clock { font-size: 8px; margin-top: 0.7em; }
+  .intro-navigation { display: grid; grid-template-columns: repeat(2, auto); justify-content: end; column-gap: 17px; row-gap: 8px; font-size: 8px; text-align: right; }
+  .intro-presentation { left: 8%; top: 14.5%; width: 84%; }
+  .intro-eyebrow { font-size: 10px; }
+  .intro-name { font-size: clamp(63px, 19vw, 86px); margin-top: 0; }
+  .intro-description { font-size: 8px; max-width: 225px; margin-top: -0.1em; margin-left: 0.5em; letter-spacing: 0.08em; }
+  .desktop-line-break { display: none; }
+  .polaroid { width: 60px; }
+  .polaroid-caption { font-size: 12px; letter-spacing: 0.02em; }
+  .polaroid-arrow { display: none; }
+  .polaroid-tape { height: 12px; top: -6px; }
+  .polaroid--projects { left: 10%; top: 45%; }
+  .polaroid--experience { left: auto; right: 9%; top: 45%; }
+  .polaroid--about { left: 15%; top: 61%; }
+  .polaroid--contact { left: auto; right: 12%; top: 64%; }
+  .polaroid .polaroid-caption { left: -4%; top: 116%; }
+  .polaroid--experience .polaroid-caption { left: -31%; }
+  .intro-editorial { left: 8%; top: auto; right: auto; bottom: 15%; font-size: 8px; color: var(--intro-ink); text-shadow: 0 1px 8px #1c3027; }
+  .editorial-rule { border-color: rgb(246 237 223 / 48%); }
+  .intro-signature { right: 8%; bottom: 14%; font-size: 20px; }
+  .intro-scroll { bottom: 4%; }
+  .scroll-indicator { gap: 4px; }
+  .scroll-mouse { width: 22px; height: 37px; }
+  .vhs-record { display: none; }
+  .viewfinder-corner { width: 17px; height: 17px; }
+  .corner-tl, .corner-bl { left: 4%; }
+  .corner-tr, .corner-br { right: 4%; }
+  .intro-atmosphere { background: linear-gradient(180deg, rgb(22 34 50 / 33%), transparent 49%, rgb(20 29 24 / 35%)); }
+}
+@media (max-width: 767px) and (max-height: 700px) {
+  .intro-signature { bottom: 5%; }
+}
+@media (max-height: 600px) and (max-width: 767px) and (orientation: portrait) {
+  .vhs-clock { display: none; }
+  .intro-presentation { top: 11.5%; }
+  .intro-name { font-size: 58px; }
+  .intro-description { font-size: 8px; max-width: 190px; }
+  .polaroid { width: 47px; }
+  .polaroid--projects, .polaroid--experience { top: 52%; }
+  .polaroid--about, .polaroid--contact { display: none; }
+  .intro-editorial { display: none; }
+  .intro-signature { font-size: 17px; bottom: 15%; }
+}
+@media (max-height: 520px) and (orientation: landscape) {
+  .intro-header { top: 8%; }
+  .vhs-clock { display: none; }
+  .intro-presentation { top: 31%; left: 7%; width: 35%; }
+  .intro-name { font-size: clamp(55px, 8vw, 82px); }
+  .intro-eyebrow { font-size: 9px; }
+  .intro-description { font-size: 8px; margin-left: 0; }
+  .polaroid { width: 53px; }
+  .polaroid--projects { left: 37%; top: 20%; }
+  .polaroid--experience { left: 63%; right: auto; top: 25%; }
+  .polaroid--about { left: 35%; top: 59%; }
+  .polaroid--contact { left: 64%; right: auto; top: 60%; }
+  .polaroid-caption { font-size: 11px; }
+  .intro-editorial { left: 83%; top: 42%; bottom: auto; right: 4%; font-size: 7px; }
+  .intro-signature { font-size: 18px; bottom: 11%; }
+  .scroll-mouse { width: 16px; height: 28px; }
+  .scroll-indicator { gap: 2px; }
+}
+
+
+/* Motion wrappers isolate floating from entrances and scroll exits. */
+.polaroid-float, .polaroid-entry { position: relative; width: 100%; }
+.intro-analog-entry { position: absolute; inset: 0; }
+.scroll-mouse { overflow: visible; }
