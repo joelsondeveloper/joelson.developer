@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 @import "../styles/intro-overlay.css";
+@import "../styles/portrait-scene.css";
+@import "../styles/projects.css";
+@import "../styles/experiences.css";
 
 /* ==========================================================================
    Design tokens — retro / cinematic / VHS identity
@@ -138,3 +141,5 @@ ol[role="list"] {
   background: rgb(7 8 12 / 90%);
   text-align: center;
 }
+
+

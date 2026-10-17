@@ -1,0 +1,38 @@
+[
+  {
+    "id": "curiosity",
+    "url": "https://images.openai.com/static-rsc-4/1UBl5sSahDEdS785Ouc3bP2dpABm43NsBHjVnFfYGPKGb4CqRef8eoibW99AK7NiLKQgrDqA8xIN8hi2Uo8nKIAPetLu1no2VPMc-r46kbNeV5U8DWLQmlIAgtJ3MaLEQjV9zwS04swuHA-5Opv9L3k8Q-ZLt5BxvOMVYluDeb4?purpose=inline"
+  },
+  {
+    "id": "science",
+    "url": "https://images.openai.com/static-rsc-4/jwuy59eijRr47YxoNaQtgZWeJrk_Hfp2sbyMLs1xNGyFJNB28kZGjR-FAVordJKAklaGatZbrYmc1Y2eHXb97YYIRvc-gSkawfj7w1YlFtQARyYid--MuTdqwuWkIT9dKgA93LZyztgjaMvY5tAarISL3LOf5HnbXHSdhTSeaw4?purpose=inline"
+  },
+  {
+    "id": "creativity",
+    "url": "https://images.openai.com/static-rsc-4/w2YTFHsErElCBYLpganug_mkbfN-rwqsZ9Love8NYjRSuO4iPbW97b_3Lt81xqzHAdeQTFvU7BsscsbzQ8L3bu3A3EPct8KofQMCuDOB_9BtUeNBFEDLvaT_ACEF_71UZkDBYOAf4s7pbZidQWtAl_Y2kjKTbx6HklbwG_blLxw?purpose=inline"
+  },
+  {
+    "id": "education",
+    "url": "https://images.openai.com/static-rsc-4/KrLHDDrLX5nEasfMumyxXvQ_ojKq_FzxtKP4Hn5qkwwy-f59XRuL_VRQtzD9CbgBnPwWJ9JRzremQASK7bkE8h8m1fIxWqKpJoSiZjQKRlyKjRvNXHVnW6YrDtWR7VXJ3rM65BST_JG4oUqTI4-heL2-Mb7QSpWV4ynt-IgRcPA?purpose=inline"
+  },
+  {
+    "id": "development",
+    "url": "https://images.openai.com/static-rsc-4/D6svqpVjSY2C4IHWB2iIz82Jv4847iQbN-cD_8a9s7XZgCpoQdtZdV4qRZ3STQ-Xw-iQU9ig8sVLA8jG36sSWnvIE84OW6_QpQ-wI3FfBfgDDMRqqu3rOoq1PvT2TU5pSwnvkfqEz9fl9cnuh5vzasBMD6FUdb04lpnK6ktt9Ow?purpose=inline"
+  },
+  {
+    "id": "experiments",
+    "url": "https://images.openai.com/static-rsc-4/CZeTfcgOQp8O_14nWBaxleAz3gyO8Exw7eekfqZQxi0W__PqDzZLoQq1OlYwd3r1gBhCbHS1kG1qIwoP8SDcGE4lqZlm2Qk8PPW8Tro7_AE0YudLLGzLnZ2k5lZJn6OUV8dGbThuAKNShvp6tUZJZCX1WinvfLXfdg3HSAuKw5o?purpose=inline"
+  },
+  {
+    "id": "growth",
+    "url": "https://images.openai.com/static-rsc-4/BzccBK2X6mJGKUbBhajaTepB9FR3XKX_fZkBnaQZNoZx_yGaAAb-2pSHrhPrbafQKeil9ICC4cqLJgK0ZA4G1lfNu4roaJ8JoLVNCYep0umG7rWOodsvX-Xxxw3Bq-wN375v0BUjPCBwodUZMuygzoJAGOg_JBJJyTIN5b2RIi0?purpose=inline"
+  },
+  {
+    "id": "collaboration",
+    "url": "https://images.openai.com/static-rsc-4/HNRdLxzlh1f3wqs4w_XqgbRJ0zn1_NJ1Bo7G2enfg8wGAw2jYuY2ompzGuIcS4u-oUguZFP3z6WRWgfzEyJHtLVhP3ZTCSQ_cXdK9D0OJPvNivDP7fy13_Fhbc9wLenvc6XrXBDHaS_KkZg0Fe88UI6Lqyuj0jOKYhZgSADyoOeQC1HWpXBWG9jB64DRzuuY?purpose=inline"
+  },
+  {
+    "id": "future",
+    "url": "https://images.openai.com/static-rsc-4/nXePMFu8Q3m72rPxhsHFfdgLLPeUBgEpbT3Kqnovfx9pwP471EkBxtF0AM9nA2dG7Q07ubVC5va_Ox3eToln8XnNMR5DGFdZOPw1x28K6mjFZ4Q5zXoc8bMKfJuLopQiQnFHk9x0wsIRlF6ehQ2X9WgmGs6ap54oKPtHsyHxTyc?purpose=inline"
+  }
+]

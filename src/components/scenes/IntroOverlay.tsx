@@ -29,7 +29,7 @@ export function IntroOverlay({ overlayRef }: { overlayRef: RefObject<HTMLDivElem
         <div data-entry><VhsIndicator /></div>
         <nav aria-label="Seções do portfólio" data-entry>
           {/* Labels become links when their real destinations are implemented. */}
-          <ul className="intro-navigation">{sections.map(section => <li key={section}><span>{section}</span></li>)}</ul>
+          <ul className="intro-navigation">{sections.map(section => <li key={section}>{(section === "PROJETOS" || section === "EXPERIÊNCIA") ? <a href={section === "PROJETOS" ? "#projetos" : "#experiencias"} onClick={event => { event.preventDefault(); const target = document.getElementById("cinematic-intro"); if (target) window.scrollTo({ top: window.innerHeight * 4 * (section === "PROJETOS" ? 4.75 : 7.65), behavior: "instant" }); }}>{section}</a> : <span>{section}</span>}</li>)}</ul>
         </nav>
       </header>
       <div className="intro-presentation" data-intro-layer="presentation">

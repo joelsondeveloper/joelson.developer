@@ -22,8 +22,8 @@
 .vhs-play span { display: inline-block; margin-left: 0.25em; font-size: 0.78em; }
 .vhs-clock { display: grid; gap: 0.2em; margin-top: 1.1em; font-size: clamp(9px, 0.82vw, 14px); letter-spacing: 0.12em; line-height: 1.15; }
 .intro-navigation { display: flex; gap: clamp(20px, 2.4vw, 42px); padding-top: 0.4em; list-style: none; font: 400 clamp(10px, 0.77vw, 13px)/1.5 var(--font-geist-mono), monospace; letter-spacing: 0.11em; color: var(--intro-dark-ink); }
-.intro-navigation span { pointer-events: auto; transition: color 180ms ease; }
-.intro-navigation span:hover { color: #111b28; }
+.intro-navigation span, .intro-navigation a { pointer-events: auto; transition: color 180ms ease; }
+.intro-navigation span:hover, .intro-navigation a:hover { color: #111b28; }
 .intro-presentation { position: absolute; left: 10%; top: 28%; width: 29%; text-shadow: 0 2px 15px rgb(16 27 37 / 24%); }
 .intro-eyebrow { display: inline-block; padding-bottom: 0.1em; border-bottom: 1px solid rgb(246 237 223 / 40%); font: 400 clamp(11px, 0.83vw, 15px)/1.5 var(--font-geist-mono), monospace; letter-spacing: 0.13em; }
 .intro-name { position: relative; margin: 0.02em 0 0 -0.12em; font-family: var(--font-intro-script), cursive; font-size: clamp(68px, 6.9vw, 124px); font-weight: 400; line-height: 1.12; letter-spacing: -0.055em; transform: rotate(-5deg); }

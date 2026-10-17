@@ -1,5 +1,6 @@
-import Image from "next/image";
+import { DeferredImage } from "./DeferredImage";
 import type { CSSProperties } from "react";
+import { imageAssets } from "@/lib/image-assets";
 
 export interface PolaroidCardData {
   id: string;
@@ -7,21 +8,27 @@ export interface PolaroidCardData {
   image: string;
   rotation: number;
   href?: string;
+  alt?: string;
 }
 
-export function PolaroidCard({ card }: { card: PolaroidCardData }) {
+export function PolaroidCard({ card, variant = "hero" }: { card: PolaroidCardData; variant?: "hero" | "about" }) {
+  const asset = imageAssets[card.image];
+  const ratio = variant === "about" && asset ? (asset.width / asset.height) / (3 / 4) : 1;
+  const sizes = variant === "about"
+    ? `(max-width: 767px) ${30 * ratio}vw, (max-height: 650px) ${78 * ratio}px, ${112 * ratio}px`
+    : "(max-width: 767px) 68px, 110px";
   const print = (
     <div className="polaroid-print">
       <span className="polaroid-tape" aria-hidden="true" />
       <div className="polaroid-image">
-        <Image src={card.image} alt="" width={420} height={360} sizes="(max-width: 767px) 68px, 110px" />
+        <DeferredImage activation={variant === "about" ? "nearby" : "immediate"} src={card.image} alt={card.alt ?? ""} width={420} height={360} sizes={sizes} />
       </div>
     </div>
   );
   return (
-    <figure className={`polaroid polaroid--${card.id}`} style={{ "--polaroid-rotation": `${card.rotation}deg` } as CSSProperties}>
+    <figure className={`polaroid polaroid--${card.id}${variant === "about" ? " polaroid--inline" : ""}`} style={{ "--polaroid-rotation": `${card.rotation}deg` } as CSSProperties}>
       <div className="polaroid-float">
-        <div className="polaroid-entry" data-entry>
+        <div className="polaroid-entry" data-entry={variant === "hero" ? "" : undefined}>
           {card.href ? <a href={card.href} className="polaroid-link" aria-label={card.label}>{print}</a> : print}
           <span className="polaroid-caption" aria-hidden="true">
             <span>{card.label}</span>
@@ -35,3 +42,4 @@ export function PolaroidCard({ card }: { card: PolaroidCardData }) {
     </figure>
   );
 }
+
