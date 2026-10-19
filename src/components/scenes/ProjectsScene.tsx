@@ -2,6 +2,7 @@
 
 import { Component, type ReactNode, type RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { projects } from "@/data/projects";
 import { ProjectPlayer } from "./ProjectPlayer";
 import { sceneLayout } from "./scene-layout";
@@ -19,12 +20,11 @@ export function ProjectsScene({ sceneRef }: { sceneRef: RefObject<HTMLElement | 
   const returnFocus = useRef<number | null>(null), timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [near, setNear] = useState(false), [active, setActive] = useState(false), [fallback, setFallback] = useState(false);
   const [selected, setSelected] = useState<number | null>(null), [mode, setMode] = useState<TapeMode>("collection");
-  const [drag, setDrag] = useState(false), [rotation, setRotation] = useState(0), [reduced, setReduced] = useState(false);
+  const [drag, setDrag] = useState(false), [rotation, setRotation] = useState(0);
+  const reduced = usePrefersReducedMotion();
   // The parent scene owns the single pin; this layer only observes its timeline.
   useLayoutEffect(() => {
     const node = root.current!;
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updateMotion = () => setReduced(media.matches); updateMotion(); media.addEventListener("change", updateMotion);
     const resize = () => {
       const b = node.querySelector(".projects-screen")!.getBoundingClientRect(), layout = sceneLayout(b.width, b.height);
       node.style.setProperty("--slot-left", `${b.width / 2 + layout.slotX * layout.zoom}px`);
@@ -39,7 +39,7 @@ export function ProjectsScene({ sceneRef }: { sceneRef: RefObject<HTMLElement | 
     const sync = () => { const time = Number(portrait.dataset.aboutTime || 0); setNear(time >= 3.65 && time < 7.45); setActive(time >= 4.46 && time < 7.30); };
     const aboutObserver = new MutationObserver(sync);
     aboutObserver.observe(portrait, { attributes: true, attributeFilter: ["data-about-time"] }); sync();
-    return () => { aboutObserver.disconnect(); sizeObserver.disconnect(); pathObserver.disconnect(); media.removeEventListener("change", updateMotion); if (timer.current) clearTimeout(timer.current); };
+    return () => { aboutObserver.disconnect(); sizeObserver.disconnect(); pathObserver.disconnect(); if (timer.current) clearTimeout(timer.current); };
   }, [root]);
   useEffect(() => {
     if (mode === "collection" && returnFocus.current !== null) { root.current?.querySelectorAll<HTMLButtonElement>(".project-collection button")[returnFocus.current]?.focus({ preventScroll: true }); returnFocus.current = null; }
@@ -70,7 +70,6 @@ export function ProjectsScene({ sceneRef }: { sceneRef: RefObject<HTMLElement | 
   return <section id="projetos" className="projects-section projects-embedded" ref={root} data-fallback={fallback} data-path-progress="0" data-mode={mode} data-selected={selected !== null} data-active={active} aria-hidden={!active} inert={!active} aria-labelledby="projects-heading">
     <div className="projects-screen">
       <div className="projects-room" aria-hidden="true" style={near ? { backgroundImage: "url('/images/projects/liminal-vhs.webp')" } : undefined} />
-      <header className="projects-header"><span>JOELSON® / ARQUIVO PESSOAL</span><span>CANAL 03 · PROJETOS</span></header>
       <div className="projects-heading"><p className="projects-kicker">IDEIAS GRAVADAS. EXPERIÊNCIAS REAIS.</p><h2 id="projects-heading">Escolha<br /><em>uma história.</em></h2><p>Role para descobrir as fitas.<br />Selecione para girar ou arraste direto ao tocador.</p></div>
       <div className="projects-dimmer" aria-hidden="true" />
       <div className="vcr-stage" data-vcr-stage data-mode={mode} aria-hidden="true">
@@ -91,3 +90,4 @@ export function ProjectsScene({ sceneRef }: { sceneRef: RefObject<HTMLElement | 
     {mode === "playing" && selected !== null && <ProjectPlayer key={projects[selected].id} project={projects[selected]} index={selected} onEject={eject} />}
   </section>;
 }
+

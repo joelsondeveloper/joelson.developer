@@ -1,0 +1,16 @@
+[
+  {
+    "width": 1350,
+    "noJavaScript": true,
+    "textAccessible": true,
+    "email": true,
+    "noOverflow": true
+  },
+  {
+    "width": 320,
+    "noJavaScript": true,
+    "textAccessible": true,
+    "email": true,
+    "noOverflow": true
+  }
+]

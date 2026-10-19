@@ -1,0 +1,2082 @@
+[
+  {
+    "mobile": false,
+    "slow": [
+      {
+        "desired": 0,
+        "painted": 0,
+        "requested": 0,
+        "scroll": 0,
+        "progress": 0
+      },
+      {
+        "desired": 1,
+        "painted": 0,
+        "requested": 0,
+        "scroll": 8,
+        "progress": 0
+      },
+      {
+        "desired": 2,
+        "painted": 0,
+        "requested": 0,
+        "scroll": 15,
+        "progress": 0
+      },
+      {
+        "desired": 3,
+        "painted": 3,
+        "requested": 3,
+        "scroll": 23,
+        "progress": 0.0064
+      },
+      {
+        "desired": 4,
+        "painted": 4,
+        "requested": 4,
+        "scroll": 30,
+        "progress": 0.0083
+      },
+      {
+        "desired": 5,
+        "painted": 4,
+        "requested": 4,
+        "scroll": 38,
+        "progress": 0.0083
+      },
+      {
+        "desired": 6,
+        "painted": 4,
+        "requested": 4,
+        "scroll": 45,
+        "progress": 0.0083
+      },
+      {
+        "desired": 7,
+        "painted": 7,
+        "requested": 7,
+        "scroll": 53,
+        "progress": 0.0147
+      },
+      {
+        "desired": 8,
+        "painted": 8,
+        "requested": 8,
+        "scroll": 61,
+        "progress": 0.0169
+      },
+      {
+        "desired": 9,
+        "painted": 8,
+        "requested": 8,
+        "scroll": 68,
+        "progress": 0.0169
+      },
+      {
+        "desired": 10,
+        "painted": 10,
+        "requested": 10,
+        "scroll": 76,
+        "progress": 0.0211
+      },
+      {
+        "desired": 11,
+        "painted": 11,
+        "requested": 11,
+        "scroll": 83,
+        "progress": 0.0231
+      },
+      {
+        "desired": 12,
+        "painted": 12,
+        "requested": 12,
+        "scroll": 91,
+        "progress": 0.0253
+      },
+      {
+        "desired": 13,
+        "painted": 13,
+        "requested": 13,
+        "scroll": 99,
+        "progress": 0.0275
+      },
+      {
+        "desired": 14,
+        "painted": 14,
+        "requested": 14,
+        "scroll": 106,
+        "progress": 0.0294
+      },
+      {
+        "desired": 15,
+        "painted": 15,
+        "requested": 15,
+        "scroll": 114,
+        "progress": 0.0317
+      },
+      {
+        "desired": 16,
+        "painted": 16,
+        "requested": 16,
+        "scroll": 121,
+        "progress": 0.0336
+      },
+      {
+        "desired": 17,
+        "painted": 17,
+        "requested": 17,
+        "scroll": 129,
+        "progress": 0.0358
+      },
+      {
+        "desired": 18,
+        "painted": 18,
+        "requested": 18,
+        "scroll": 136,
+        "progress": 0.0378
+      },
+      {
+        "desired": 19,
+        "painted": 19,
+        "requested": 19,
+        "scroll": 144,
+        "progress": 0.04
+      },
+      {
+        "desired": 20,
+        "painted": 20,
+        "requested": 20,
+        "scroll": 152,
+        "progress": 0.0422
+      },
+      {
+        "desired": 21,
+        "painted": 21,
+        "requested": 21,
+        "scroll": 159,
+        "progress": 0.0442
+      },
+      {
+        "desired": 22,
+        "painted": 22,
+        "requested": 22,
+        "scroll": 167,
+        "progress": 0.0464
+      },
+      {
+        "desired": 23,
+        "painted": 23,
+        "requested": 23,
+        "scroll": 174,
+        "progress": 0.0483
+      },
+      {
+        "desired": 24,
+        "painted": 24,
+        "requested": 24,
+        "scroll": 182,
+        "progress": 0.0506
+      },
+      {
+        "desired": 25,
+        "painted": 25,
+        "requested": 25,
+        "scroll": 189,
+        "progress": 0.0525
+      },
+      {
+        "desired": 26,
+        "painted": 26,
+        "requested": 26,
+        "scroll": 197,
+        "progress": 0.0547
+      },
+      {
+        "desired": 27,
+        "painted": 27,
+        "requested": 27,
+        "scroll": 205,
+        "progress": 0.0569
+      },
+      {
+        "desired": 28,
+        "painted": 28,
+        "requested": 28,
+        "scroll": 212,
+        "progress": 0.0589
+      },
+      {
+        "desired": 29,
+        "painted": 29,
+        "requested": 29,
+        "scroll": 220,
+        "progress": 0.0611
+      },
+      {
+        "desired": 30,
+        "painted": 30,
+        "requested": 30,
+        "scroll": 227,
+        "progress": 0.0631
+      },
+      {
+        "desired": 31,
+        "painted": 31,
+        "requested": 31,
+        "scroll": 235,
+        "progress": 0.0653
+      },
+      {
+        "desired": 32,
+        "painted": 32,
+        "requested": 32,
+        "scroll": 243,
+        "progress": 0.0675
+      },
+      {
+        "desired": 33,
+        "painted": 33,
+        "requested": 33,
+        "scroll": 250,
+        "progress": 0.0694
+      },
+      {
+        "desired": 34,
+        "painted": 34,
+        "requested": 34,
+        "scroll": 258,
+        "progress": 0.0717
+      },
+      {
+        "desired": 35,
+        "painted": 35,
+        "requested": 35,
+        "scroll": 265,
+        "progress": 0.0736
+      },
+      {
+        "desired": 36,
+        "painted": 36,
+        "requested": 36,
+        "scroll": 273,
+        "progress": 0.0758
+      },
+      {
+        "desired": 37,
+        "painted": 37,
+        "requested": 37,
+        "scroll": 280,
+        "progress": 0.0778
+      },
+      {
+        "desired": 38,
+        "painted": 38,
+        "requested": 38,
+        "scroll": 288,
+        "progress": 0.08
+      },
+      {
+        "desired": 39,
+        "painted": 39,
+        "requested": 39,
+        "scroll": 296,
+        "progress": 0.0822
+      },
+      {
+        "desired": 40,
+        "painted": 40,
+        "requested": 40,
+        "scroll": 303,
+        "progress": 0.0842
+      },
+      {
+        "desired": 41,
+        "painted": 41,
+        "requested": 41,
+        "scroll": 311,
+        "progress": 0.0864
+      },
+      {
+        "desired": 42,
+        "painted": 42,
+        "requested": 42,
+        "scroll": 318,
+        "progress": 0.0883
+      },
+      {
+        "desired": 43,
+        "painted": 43,
+        "requested": 43,
+        "scroll": 326,
+        "progress": 0.0906
+      },
+      {
+        "desired": 44,
+        "painted": 44,
+        "requested": 44,
+        "scroll": 333,
+        "progress": 0.0925
+      },
+      {
+        "desired": 45,
+        "painted": 45,
+        "requested": 45,
+        "scroll": 341,
+        "progress": 0.0947
+      },
+      {
+        "desired": 46,
+        "painted": 46,
+        "requested": 46,
+        "scroll": 349,
+        "progress": 0.0969
+      },
+      {
+        "desired": 47,
+        "painted": 47,
+        "requested": 47,
+        "scroll": 356,
+        "progress": 0.0989
+      },
+      {
+        "desired": 48,
+        "painted": 48,
+        "requested": 48,
+        "scroll": 364,
+        "progress": 0.1011
+      },
+      {
+        "desired": 49,
+        "painted": 49,
+        "requested": 49,
+        "scroll": 371,
+        "progress": 0.1031
+      },
+      {
+        "desired": 50,
+        "painted": 50,
+        "requested": 50,
+        "scroll": 379,
+        "progress": 0.1053
+      },
+      {
+        "desired": 51,
+        "painted": 51,
+        "requested": 51,
+        "scroll": 387,
+        "progress": 0.1075
+      },
+      {
+        "desired": 52,
+        "painted": 52,
+        "requested": 52,
+        "scroll": 394,
+        "progress": 0.1094
+      },
+      {
+        "desired": 53,
+        "painted": 53,
+        "requested": 53,
+        "scroll": 402,
+        "progress": 0.1117
+      },
+      {
+        "desired": 54,
+        "painted": 54,
+        "requested": 54,
+        "scroll": 409,
+        "progress": 0.1136
+      },
+      {
+        "desired": 55,
+        "painted": 55,
+        "requested": 55,
+        "scroll": 417,
+        "progress": 0.1158
+      },
+      {
+        "desired": 56,
+        "painted": 56,
+        "requested": 56,
+        "scroll": 424,
+        "progress": 0.1178
+      },
+      {
+        "desired": 57,
+        "painted": 57,
+        "requested": 57,
+        "scroll": 432,
+        "progress": 0.12
+      },
+      {
+        "desired": 58,
+        "painted": 58,
+        "requested": 58,
+        "scroll": 440,
+        "progress": 0.1222
+      },
+      {
+        "desired": 59,
+        "painted": 59,
+        "requested": 59,
+        "scroll": 447,
+        "progress": 0.1242
+      },
+      {
+        "desired": 60,
+        "painted": 60,
+        "requested": 60,
+        "scroll": 455,
+        "progress": 0.1264
+      },
+      {
+        "desired": 61,
+        "painted": 61,
+        "requested": 61,
+        "scroll": 462,
+        "progress": 0.1283
+      },
+      {
+        "desired": 62,
+        "painted": 62,
+        "requested": 62,
+        "scroll": 470,
+        "progress": 0.1306
+      },
+      {
+        "desired": 63,
+        "painted": 63,
+        "requested": 63,
+        "scroll": 477,
+        "progress": 0.1325
+      },
+      {
+        "desired": 64,
+        "painted": 64,
+        "requested": 64,
+        "scroll": 485,
+        "progress": 0.1347
+      },
+      {
+        "desired": 65,
+        "painted": 65,
+        "requested": 65,
+        "scroll": 493,
+        "progress": 0.1369
+      },
+      {
+        "desired": 66,
+        "painted": 66,
+        "requested": 66,
+        "scroll": 500,
+        "progress": 0.1389
+      },
+      {
+        "desired": 67,
+        "painted": 67,
+        "requested": 67,
+        "scroll": 508,
+        "progress": 0.1411
+      },
+      {
+        "desired": 68,
+        "painted": 68,
+        "requested": 68,
+        "scroll": 515,
+        "progress": 0.1431
+      },
+      {
+        "desired": 69,
+        "painted": 69,
+        "requested": 69,
+        "scroll": 523,
+        "progress": 0.1453
+      },
+      {
+        "desired": 70,
+        "painted": 70,
+        "requested": 70,
+        "scroll": 531,
+        "progress": 0.1475
+      },
+      {
+        "desired": 69,
+        "painted": 69,
+        "requested": 69,
+        "scroll": 523,
+        "progress": 0.1453
+      },
+      {
+        "desired": 68,
+        "painted": 68,
+        "requested": 68,
+        "scroll": 515,
+        "progress": 0.1431
+      },
+      {
+        "desired": 67,
+        "painted": 67,
+        "requested": 67,
+        "scroll": 508,
+        "progress": 0.1411
+      },
+      {
+        "desired": 66,
+        "painted": 66,
+        "requested": 66,
+        "scroll": 500,
+        "progress": 0.1389
+      },
+      {
+        "desired": 65,
+        "painted": 65,
+        "requested": 65,
+        "scroll": 493,
+        "progress": 0.1369
+      },
+      {
+        "desired": 64,
+        "painted": 64,
+        "requested": 64,
+        "scroll": 485,
+        "progress": 0.1347
+      },
+      {
+        "desired": 63,
+        "painted": 63,
+        "requested": 63,
+        "scroll": 477,
+        "progress": 0.1325
+      },
+      {
+        "desired": 62,
+        "painted": 62,
+        "requested": 62,
+        "scroll": 470,
+        "progress": 0.1306
+      },
+      {
+        "desired": 61,
+        "painted": 61,
+        "requested": 61,
+        "scroll": 462,
+        "progress": 0.1283
+      },
+      {
+        "desired": 60,
+        "painted": 60,
+        "requested": 60,
+        "scroll": 455,
+        "progress": 0.1264
+      },
+      {
+        "desired": 59,
+        "painted": 59,
+        "requested": 59,
+        "scroll": 447,
+        "progress": 0.1242
+      },
+      {
+        "desired": 58,
+        "painted": 58,
+        "requested": 58,
+        "scroll": 440,
+        "progress": 0.1222
+      },
+      {
+        "desired": 57,
+        "painted": 57,
+        "requested": 57,
+        "scroll": 432,
+        "progress": 0.12
+      },
+      {
+        "desired": 56,
+        "painted": 56,
+        "requested": 56,
+        "scroll": 424,
+        "progress": 0.1178
+      },
+      {
+        "desired": 55,
+        "painted": 55,
+        "requested": 55,
+        "scroll": 417,
+        "progress": 0.1158
+      },
+      {
+        "desired": 54,
+        "painted": 54,
+        "requested": 54,
+        "scroll": 409,
+        "progress": 0.1136
+      },
+      {
+        "desired": 53,
+        "painted": 53,
+        "requested": 53,
+        "scroll": 402,
+        "progress": 0.1117
+      },
+      {
+        "desired": 52,
+        "painted": 52,
+        "requested": 52,
+        "scroll": 394,
+        "progress": 0.1094
+      },
+      {
+        "desired": 51,
+        "painted": 51,
+        "requested": 51,
+        "scroll": 387,
+        "progress": 0.1075
+      },
+      {
+        "desired": 50,
+        "painted": 50,
+        "requested": 50,
+        "scroll": 379,
+        "progress": 0.1053
+      },
+      {
+        "desired": 49,
+        "painted": 49,
+        "requested": 49,
+        "scroll": 371,
+        "progress": 0.1031
+      },
+      {
+        "desired": 48,
+        "painted": 48,
+        "requested": 48,
+        "scroll": 364,
+        "progress": 0.1011
+      },
+      {
+        "desired": 47,
+        "painted": 47,
+        "requested": 47,
+        "scroll": 356,
+        "progress": 0.0989
+      },
+      {
+        "desired": 46,
+        "painted": 46,
+        "requested": 46,
+        "scroll": 349,
+        "progress": 0.0969
+      },
+      {
+        "desired": 45,
+        "painted": 45,
+        "requested": 45,
+        "scroll": 341,
+        "progress": 0.0947
+      },
+      {
+        "desired": 44,
+        "painted": 44,
+        "requested": 44,
+        "scroll": 333,
+        "progress": 0.0925
+      },
+      {
+        "desired": 43,
+        "painted": 43,
+        "requested": 43,
+        "scroll": 326,
+        "progress": 0.0906
+      },
+      {
+        "desired": 42,
+        "painted": 42,
+        "requested": 42,
+        "scroll": 318,
+        "progress": 0.0883
+      },
+      {
+        "desired": 41,
+        "painted": 41,
+        "requested": 41,
+        "scroll": 311,
+        "progress": 0.0864
+      },
+      {
+        "desired": 40,
+        "painted": 40,
+        "requested": 40,
+        "scroll": 303,
+        "progress": 0.0842
+      },
+      {
+        "desired": 39,
+        "painted": 39,
+        "requested": 39,
+        "scroll": 296,
+        "progress": 0.0822
+      },
+      {
+        "desired": 38,
+        "painted": 38,
+        "requested": 38,
+        "scroll": 288,
+        "progress": 0.08
+      },
+      {
+        "desired": 37,
+        "painted": 37,
+        "requested": 37,
+        "scroll": 280,
+        "progress": 0.0778
+      },
+      {
+        "desired": 36,
+        "painted": 36,
+        "requested": 36,
+        "scroll": 273,
+        "progress": 0.0758
+      },
+      {
+        "desired": 35,
+        "painted": 35,
+        "requested": 35,
+        "scroll": 265,
+        "progress": 0.0736
+      },
+      {
+        "desired": 34,
+        "painted": 34,
+        "requested": 34,
+        "scroll": 258,
+        "progress": 0.0717
+      },
+      {
+        "desired": 33,
+        "painted": 33,
+        "requested": 33,
+        "scroll": 250,
+        "progress": 0.0694
+      },
+      {
+        "desired": 32,
+        "painted": 32,
+        "requested": 32,
+        "scroll": 243,
+        "progress": 0.0675
+      },
+      {
+        "desired": 31,
+        "painted": 31,
+        "requested": 31,
+        "scroll": 235,
+        "progress": 0.0653
+      },
+      {
+        "desired": 30,
+        "painted": 30,
+        "requested": 30,
+        "scroll": 227,
+        "progress": 0.0631
+      },
+      {
+        "desired": 29,
+        "painted": 29,
+        "requested": 29,
+        "scroll": 220,
+        "progress": 0.0611
+      },
+      {
+        "desired": 28,
+        "painted": 28,
+        "requested": 28,
+        "scroll": 212,
+        "progress": 0.0589
+      },
+      {
+        "desired": 27,
+        "painted": 27,
+        "requested": 27,
+        "scroll": 205,
+        "progress": 0.0569
+      },
+      {
+        "desired": 26,
+        "painted": 26,
+        "requested": 26,
+        "scroll": 197,
+        "progress": 0.0547
+      },
+      {
+        "desired": 25,
+        "painted": 25,
+        "requested": 25,
+        "scroll": 189,
+        "progress": 0.0525
+      },
+      {
+        "desired": 24,
+        "painted": 24,
+        "requested": 24,
+        "scroll": 182,
+        "progress": 0.0506
+      },
+      {
+        "desired": 23,
+        "painted": 23,
+        "requested": 23,
+        "scroll": 174,
+        "progress": 0.0483
+      },
+      {
+        "desired": 22,
+        "painted": 22,
+        "requested": 22,
+        "scroll": 167,
+        "progress": 0.0464
+      },
+      {
+        "desired": 21,
+        "painted": 21,
+        "requested": 21,
+        "scroll": 159,
+        "progress": 0.0442
+      },
+      {
+        "desired": 20,
+        "painted": 20,
+        "requested": 20,
+        "scroll": 152,
+        "progress": 0.0422
+      },
+      {
+        "desired": 19,
+        "painted": 19,
+        "requested": 19,
+        "scroll": 144,
+        "progress": 0.04
+      },
+      {
+        "desired": 18,
+        "painted": 18,
+        "requested": 18,
+        "scroll": 136,
+        "progress": 0.0378
+      },
+      {
+        "desired": 17,
+        "painted": 17,
+        "requested": 17,
+        "scroll": 129,
+        "progress": 0.0358
+      },
+      {
+        "desired": 16,
+        "painted": 16,
+        "requested": 16,
+        "scroll": 121,
+        "progress": 0.0336
+      },
+      {
+        "desired": 15,
+        "painted": 15,
+        "requested": 15,
+        "scroll": 114,
+        "progress": 0.0317
+      },
+      {
+        "desired": 14,
+        "painted": 14,
+        "requested": 14,
+        "scroll": 106,
+        "progress": 0.0294
+      },
+      {
+        "desired": 13,
+        "painted": 13,
+        "requested": 13,
+        "scroll": 99,
+        "progress": 0.0275
+      },
+      {
+        "desired": 12,
+        "painted": 12,
+        "requested": 12,
+        "scroll": 91,
+        "progress": 0.0253
+      },
+      {
+        "desired": 11,
+        "painted": 11,
+        "requested": 11,
+        "scroll": 83,
+        "progress": 0.0231
+      },
+      {
+        "desired": 10,
+        "painted": 10,
+        "requested": 10,
+        "scroll": 76,
+        "progress": 0.0211
+      },
+      {
+        "desired": 9,
+        "painted": 9,
+        "requested": 9,
+        "scroll": 68,
+        "progress": 0.0189
+      },
+      {
+        "desired": 8,
+        "painted": 8,
+        "requested": 8,
+        "scroll": 61,
+        "progress": 0.0169
+      },
+      {
+        "desired": 7,
+        "painted": 7,
+        "requested": 7,
+        "scroll": 53,
+        "progress": 0.0147
+      },
+      {
+        "desired": 6,
+        "painted": 6,
+        "requested": 6,
+        "scroll": 45,
+        "progress": 0.0125
+      },
+      {
+        "desired": 5,
+        "painted": 5,
+        "requested": 5,
+        "scroll": 38,
+        "progress": 0.0106
+      },
+      {
+        "desired": 4,
+        "painted": 4,
+        "requested": 4,
+        "scroll": 30,
+        "progress": 0.0083
+      },
+      {
+        "desired": 3,
+        "painted": 3,
+        "requested": 3,
+        "scroll": 23,
+        "progress": 0.0064
+      },
+      {
+        "desired": 2,
+        "painted": 2,
+        "requested": 2,
+        "scroll": 15,
+        "progress": 0.0042
+      },
+      {
+        "desired": 1,
+        "painted": 1,
+        "requested": 1,
+        "scroll": 8,
+        "progress": 0.0022
+      },
+      {
+        "desired": 0,
+        "painted": 0,
+        "requested": 0,
+        "scroll": 0,
+        "progress": 0
+      }
+    ],
+    "fast": [
+      {
+        "frame": 0,
+        "total": 476,
+        "bytes": 99532800,
+        "failed": 0,
+        "variant": "desktop"
+      },
+      {
+        "frame": 119,
+        "total": 476,
+        "bytes": 99532800,
+        "failed": 0,
+        "variant": "desktop"
+      },
+      {
+        "frame": 356,
+        "total": 476,
+        "bytes": 99532800,
+        "failed": 0,
+        "variant": "desktop"
+      },
+      {
+        "frame": 475,
+        "total": 476,
+        "bytes": 99532800,
+        "failed": 0,
+        "variant": "desktop"
+      },
+      {
+        "frame": 238,
+        "total": 476,
+        "bytes": 99532800,
+        "failed": 0,
+        "variant": "desktop"
+      },
+      {
+        "frame": 0,
+        "total": 476,
+        "bytes": 99532800,
+        "failed": 0,
+        "variant": "desktop"
+      }
+    ],
+    "meanError": 0.04964539007092199,
+    "maxError": 2,
+    "errors": [],
+    "bad": []
+  },
+  {
+    "mobile": true,
+    "slow": [
+      {
+        "desired": 0,
+        "painted": 0,
+        "requested": null,
+        "scroll": 0,
+        "progress": 0
+      },
+      {
+        "desired": 1,
+        "painted": 1,
+        "requested": 1,
+        "scroll": 7,
+        "progress": 0.0021
+      },
+      {
+        "desired": 2,
+        "painted": 2,
+        "requested": 2,
+        "scroll": 14,
+        "progress": 0.0041
+      },
+      {
+        "desired": 3,
+        "painted": 3,
+        "requested": 3,
+        "scroll": 21,
+        "progress": 0.0062
+      },
+      {
+        "desired": 4,
+        "painted": 4,
+        "requested": 4,
+        "scroll": 28,
+        "progress": 0.0083
+      },
+      {
+        "desired": 5,
+        "painted": 5,
+        "requested": 5,
+        "scroll": 36,
+        "progress": 0.0107
+      },
+      {
+        "desired": 6,
+        "painted": 6,
+        "requested": 6,
+        "scroll": 43,
+        "progress": 0.0127
+      },
+      {
+        "desired": 7,
+        "painted": 7,
+        "requested": 7,
+        "scroll": 50,
+        "progress": 0.0148
+      },
+      {
+        "desired": 8,
+        "painted": 8,
+        "requested": 8,
+        "scroll": 57,
+        "progress": 0.0169
+      },
+      {
+        "desired": 9,
+        "painted": 9,
+        "requested": 9,
+        "scroll": 64,
+        "progress": 0.019
+      },
+      {
+        "desired": 10,
+        "painted": 10,
+        "requested": 10,
+        "scroll": 71,
+        "progress": 0.021
+      },
+      {
+        "desired": 11,
+        "painted": 11,
+        "requested": 11,
+        "scroll": 78,
+        "progress": 0.0231
+      },
+      {
+        "desired": 12,
+        "painted": 12,
+        "requested": 12,
+        "scroll": 85,
+        "progress": 0.0252
+      },
+      {
+        "desired": 13,
+        "painted": 13,
+        "requested": 13,
+        "scroll": 92,
+        "progress": 0.0273
+      },
+      {
+        "desired": 14,
+        "painted": 14,
+        "requested": 14,
+        "scroll": 100,
+        "progress": 0.0296
+      },
+      {
+        "desired": 15,
+        "painted": 15,
+        "requested": 15,
+        "scroll": 107,
+        "progress": 0.0317
+      },
+      {
+        "desired": 16,
+        "painted": 16,
+        "requested": 16,
+        "scroll": 114,
+        "progress": 0.0338
+      },
+      {
+        "desired": 17,
+        "painted": 17,
+        "requested": 17,
+        "scroll": 121,
+        "progress": 0.0358
+      },
+      {
+        "desired": 18,
+        "painted": 18,
+        "requested": 18,
+        "scroll": 128,
+        "progress": 0.0379
+      },
+      {
+        "desired": 19,
+        "painted": 19,
+        "requested": 19,
+        "scroll": 135,
+        "progress": 0.04
+      },
+      {
+        "desired": 20,
+        "painted": 20,
+        "requested": 20,
+        "scroll": 142,
+        "progress": 0.0421
+      },
+      {
+        "desired": 21,
+        "painted": 21,
+        "requested": 21,
+        "scroll": 149,
+        "progress": 0.0441
+      },
+      {
+        "desired": 22,
+        "painted": 22,
+        "requested": 22,
+        "scroll": 156,
+        "progress": 0.0462
+      },
+      {
+        "desired": 23,
+        "painted": 23,
+        "requested": 23,
+        "scroll": 163,
+        "progress": 0.0483
+      },
+      {
+        "desired": 24,
+        "painted": 24,
+        "requested": 24,
+        "scroll": 171,
+        "progress": 0.0507
+      },
+      {
+        "desired": 25,
+        "painted": 25,
+        "requested": 25,
+        "scroll": 178,
+        "progress": 0.0527
+      },
+      {
+        "desired": 26,
+        "painted": 26,
+        "requested": 26,
+        "scroll": 185,
+        "progress": 0.0548
+      },
+      {
+        "desired": 27,
+        "painted": 27,
+        "requested": 27,
+        "scroll": 192,
+        "progress": 0.0569
+      },
+      {
+        "desired": 28,
+        "painted": 28,
+        "requested": 28,
+        "scroll": 199,
+        "progress": 0.0589
+      },
+      {
+        "desired": 29,
+        "painted": 29,
+        "requested": 29,
+        "scroll": 206,
+        "progress": 0.061
+      },
+      {
+        "desired": 30,
+        "painted": 30,
+        "requested": 30,
+        "scroll": 213,
+        "progress": 0.0631
+      },
+      {
+        "desired": 31,
+        "painted": 31,
+        "requested": 31,
+        "scroll": 220,
+        "progress": 0.0652
+      },
+      {
+        "desired": 32,
+        "painted": 32,
+        "requested": 32,
+        "scroll": 227,
+        "progress": 0.0672
+      },
+      {
+        "desired": 33,
+        "painted": 33,
+        "requested": 33,
+        "scroll": 235,
+        "progress": 0.0696
+      },
+      {
+        "desired": 34,
+        "painted": 34,
+        "requested": 34,
+        "scroll": 242,
+        "progress": 0.0717
+      },
+      {
+        "desired": 35,
+        "painted": 35,
+        "requested": 35,
+        "scroll": 249,
+        "progress": 0.0738
+      },
+      {
+        "desired": 36,
+        "painted": 36,
+        "requested": 36,
+        "scroll": 256,
+        "progress": 0.0758
+      },
+      {
+        "desired": 37,
+        "painted": 37,
+        "requested": 37,
+        "scroll": 263,
+        "progress": 0.0779
+      },
+      {
+        "desired": 38,
+        "painted": 38,
+        "requested": 38,
+        "scroll": 270,
+        "progress": 0.08
+      },
+      {
+        "desired": 39,
+        "painted": 39,
+        "requested": 39,
+        "scroll": 277,
+        "progress": 0.082
+      },
+      {
+        "desired": 40,
+        "painted": 40,
+        "requested": 40,
+        "scroll": 284,
+        "progress": 0.0841
+      },
+      {
+        "desired": 41,
+        "painted": 41,
+        "requested": 41,
+        "scroll": 291,
+        "progress": 0.0862
+      },
+      {
+        "desired": 42,
+        "painted": 42,
+        "requested": 42,
+        "scroll": 299,
+        "progress": 0.0886
+      },
+      {
+        "desired": 43,
+        "painted": 43,
+        "requested": 43,
+        "scroll": 306,
+        "progress": 0.0906
+      },
+      {
+        "desired": 44,
+        "painted": 44,
+        "requested": 44,
+        "scroll": 313,
+        "progress": 0.0927
+      },
+      {
+        "desired": 45,
+        "painted": 45,
+        "requested": 45,
+        "scroll": 320,
+        "progress": 0.0948
+      },
+      {
+        "desired": 46,
+        "painted": 46,
+        "requested": 46,
+        "scroll": 327,
+        "progress": 0.0969
+      },
+      {
+        "desired": 47,
+        "painted": 47,
+        "requested": 47,
+        "scroll": 334,
+        "progress": 0.0989
+      },
+      {
+        "desired": 48,
+        "painted": 48,
+        "requested": 48,
+        "scroll": 341,
+        "progress": 0.101
+      },
+      {
+        "desired": 49,
+        "painted": 49,
+        "requested": 49,
+        "scroll": 348,
+        "progress": 0.1031
+      },
+      {
+        "desired": 50,
+        "painted": 50,
+        "requested": 50,
+        "scroll": 355,
+        "progress": 0.1052
+      },
+      {
+        "desired": 51,
+        "painted": 51,
+        "requested": 51,
+        "scroll": 362,
+        "progress": 0.1072
+      },
+      {
+        "desired": 52,
+        "painted": 52,
+        "requested": 52,
+        "scroll": 370,
+        "progress": 0.1096
+      },
+      {
+        "desired": 53,
+        "painted": 53,
+        "requested": 53,
+        "scroll": 377,
+        "progress": 0.1117
+      },
+      {
+        "desired": 54,
+        "painted": 54,
+        "requested": 54,
+        "scroll": 384,
+        "progress": 0.1137
+      },
+      {
+        "desired": 55,
+        "painted": 55,
+        "requested": 55,
+        "scroll": 391,
+        "progress": 0.1158
+      },
+      {
+        "desired": 56,
+        "painted": 56,
+        "requested": 56,
+        "scroll": 398,
+        "progress": 0.1179
+      },
+      {
+        "desired": 57,
+        "painted": 57,
+        "requested": 57,
+        "scroll": 405,
+        "progress": 0.12
+      },
+      {
+        "desired": 58,
+        "painted": 58,
+        "requested": 58,
+        "scroll": 412,
+        "progress": 0.122
+      },
+      {
+        "desired": 59,
+        "painted": 59,
+        "requested": 59,
+        "scroll": 419,
+        "progress": 0.1241
+      },
+      {
+        "desired": 60,
+        "painted": 60,
+        "requested": 60,
+        "scroll": 426,
+        "progress": 0.1262
+      },
+      {
+        "desired": 61,
+        "painted": 61,
+        "requested": 61,
+        "scroll": 434,
+        "progress": 0.1286
+      },
+      {
+        "desired": 62,
+        "painted": 62,
+        "requested": 62,
+        "scroll": 441,
+        "progress": 0.1306
+      },
+      {
+        "desired": 63,
+        "painted": 63,
+        "requested": 63,
+        "scroll": 448,
+        "progress": 0.1327
+      },
+      {
+        "desired": 64,
+        "painted": 64,
+        "requested": 64,
+        "scroll": 455,
+        "progress": 0.1348
+      },
+      {
+        "desired": 65,
+        "painted": 65,
+        "requested": 65,
+        "scroll": 462,
+        "progress": 0.1368
+      },
+      {
+        "desired": 66,
+        "painted": 66,
+        "requested": 66,
+        "scroll": 469,
+        "progress": 0.1389
+      },
+      {
+        "desired": 67,
+        "painted": 67,
+        "requested": 67,
+        "scroll": 476,
+        "progress": 0.141
+      },
+      {
+        "desired": 68,
+        "painted": 68,
+        "requested": 68,
+        "scroll": 483,
+        "progress": 0.1431
+      },
+      {
+        "desired": 69,
+        "painted": 69,
+        "requested": 69,
+        "scroll": 490,
+        "progress": 0.1451
+      },
+      {
+        "desired": 70,
+        "painted": 70,
+        "requested": 70,
+        "scroll": 498,
+        "progress": 0.1475
+      },
+      {
+        "desired": 69,
+        "painted": 69,
+        "requested": 69,
+        "scroll": 490,
+        "progress": 0.1451
+      },
+      {
+        "desired": 68,
+        "painted": 68,
+        "requested": 68,
+        "scroll": 483,
+        "progress": 0.1431
+      },
+      {
+        "desired": 67,
+        "painted": 67,
+        "requested": 67,
+        "scroll": 476,
+        "progress": 0.141
+      },
+      {
+        "desired": 66,
+        "painted": 66,
+        "requested": 66,
+        "scroll": 469,
+        "progress": 0.1389
+      },
+      {
+        "desired": 65,
+        "painted": 65,
+        "requested": 65,
+        "scroll": 462,
+        "progress": 0.1368
+      },
+      {
+        "desired": 64,
+        "painted": 64,
+        "requested": 64,
+        "scroll": 455,
+        "progress": 0.1348
+      },
+      {
+        "desired": 63,
+        "painted": 63,
+        "requested": 63,
+        "scroll": 448,
+        "progress": 0.1327
+      },
+      {
+        "desired": 62,
+        "painted": 62,
+        "requested": 62,
+        "scroll": 441,
+        "progress": 0.1306
+      },
+      {
+        "desired": 61,
+        "painted": 61,
+        "requested": 61,
+        "scroll": 434,
+        "progress": 0.1286
+      },
+      {
+        "desired": 60,
+        "painted": 60,
+        "requested": 60,
+        "scroll": 426,
+        "progress": 0.1262
+      },
+      {
+        "desired": 59,
+        "painted": 59,
+        "requested": 59,
+        "scroll": 419,
+        "progress": 0.1241
+      },
+      {
+        "desired": 58,
+        "painted": 58,
+        "requested": 58,
+        "scroll": 412,
+        "progress": 0.122
+      },
+      {
+        "desired": 57,
+        "painted": 57,
+        "requested": 57,
+        "scroll": 405,
+        "progress": 0.12
+      },
+      {
+        "desired": 56,
+        "painted": 56,
+        "requested": 56,
+        "scroll": 398,
+        "progress": 0.1179
+      },
+      {
+        "desired": 55,
+        "painted": 55,
+        "requested": 55,
+        "scroll": 391,
+        "progress": 0.1158
+      },
+      {
+        "desired": 54,
+        "painted": 54,
+        "requested": 54,
+        "scroll": 384,
+        "progress": 0.1137
+      },
+      {
+        "desired": 53,
+        "painted": 53,
+        "requested": 53,
+        "scroll": 377,
+        "progress": 0.1117
+      },
+      {
+        "desired": 52,
+        "painted": 52,
+        "requested": 52,
+        "scroll": 370,
+        "progress": 0.1096
+      },
+      {
+        "desired": 51,
+        "painted": 51,
+        "requested": 51,
+        "scroll": 362,
+        "progress": 0.1072
+      },
+      {
+        "desired": 50,
+        "painted": 50,
+        "requested": 50,
+        "scroll": 355,
+        "progress": 0.1052
+      },
+      {
+        "desired": 49,
+        "painted": 49,
+        "requested": 49,
+        "scroll": 348,
+        "progress": 0.1031
+      },
+      {
+        "desired": 48,
+        "painted": 48,
+        "requested": 48,
+        "scroll": 341,
+        "progress": 0.101
+      },
+      {
+        "desired": 47,
+        "painted": 47,
+        "requested": 47,
+        "scroll": 334,
+        "progress": 0.0989
+      },
+      {
+        "desired": 46,
+        "painted": 46,
+        "requested": 46,
+        "scroll": 327,
+        "progress": 0.0969
+      },
+      {
+        "desired": 45,
+        "painted": 45,
+        "requested": 45,
+        "scroll": 320,
+        "progress": 0.0948
+      },
+      {
+        "desired": 44,
+        "painted": 44,
+        "requested": 44,
+        "scroll": 313,
+        "progress": 0.0927
+      },
+      {
+        "desired": 43,
+        "painted": 43,
+        "requested": 43,
+        "scroll": 306,
+        "progress": 0.0906
+      },
+      {
+        "desired": 42,
+        "painted": 42,
+        "requested": 42,
+        "scroll": 299,
+        "progress": 0.0886
+      },
+      {
+        "desired": 41,
+        "painted": 41,
+        "requested": 41,
+        "scroll": 291,
+        "progress": 0.0862
+      },
+      {
+        "desired": 40,
+        "painted": 40,
+        "requested": 40,
+        "scroll": 284,
+        "progress": 0.0841
+      },
+      {
+        "desired": 39,
+        "painted": 39,
+        "requested": 39,
+        "scroll": 277,
+        "progress": 0.082
+      },
+      {
+        "desired": 38,
+        "painted": 38,
+        "requested": 38,
+        "scroll": 270,
+        "progress": 0.08
+      },
+      {
+        "desired": 37,
+        "painted": 37,
+        "requested": 37,
+        "scroll": 263,
+        "progress": 0.0779
+      },
+      {
+        "desired": 36,
+        "painted": 36,
+        "requested": 36,
+        "scroll": 256,
+        "progress": 0.0758
+      },
+      {
+        "desired": 35,
+        "painted": 35,
+        "requested": 35,
+        "scroll": 249,
+        "progress": 0.0738
+      },
+      {
+        "desired": 34,
+        "painted": 34,
+        "requested": 34,
+        "scroll": 242,
+        "progress": 0.0717
+      },
+      {
+        "desired": 33,
+        "painted": 33,
+        "requested": 33,
+        "scroll": 235,
+        "progress": 0.0696
+      },
+      {
+        "desired": 32,
+        "painted": 32,
+        "requested": 32,
+        "scroll": 227,
+        "progress": 0.0672
+      },
+      {
+        "desired": 31,
+        "painted": 31,
+        "requested": 31,
+        "scroll": 220,
+        "progress": 0.0652
+      },
+      {
+        "desired": 30,
+        "painted": 30,
+        "requested": 30,
+        "scroll": 213,
+        "progress": 0.0631
+      },
+      {
+        "desired": 29,
+        "painted": 29,
+        "requested": 29,
+        "scroll": 206,
+        "progress": 0.061
+      },
+      {
+        "desired": 28,
+        "painted": 28,
+        "requested": 28,
+        "scroll": 199,
+        "progress": 0.0589
+      },
+      {
+        "desired": 27,
+        "painted": 27,
+        "requested": 27,
+        "scroll": 192,
+        "progress": 0.0569
+      },
+      {
+        "desired": 26,
+        "painted": 26,
+        "requested": 26,
+        "scroll": 185,
+        "progress": 0.0548
+      },
+      {
+        "desired": 25,
+        "painted": 25,
+        "requested": 25,
+        "scroll": 178,
+        "progress": 0.0527
+      },
+      {
+        "desired": 24,
+        "painted": 24,
+        "requested": 24,
+        "scroll": 171,
+        "progress": 0.0507
+      },
+      {
+        "desired": 23,
+        "painted": 23,
+        "requested": 23,
+        "scroll": 163,
+        "progress": 0.0483
+      },
+      {
+        "desired": 22,
+        "painted": 22,
+        "requested": 22,
+        "scroll": 156,
+        "progress": 0.0462
+      },
+      {
+        "desired": 21,
+        "painted": 21,
+        "requested": 21,
+        "scroll": 149,
+        "progress": 0.0441
+      },
+      {
+        "desired": 20,
+        "painted": 20,
+        "requested": 20,
+        "scroll": 142,
+        "progress": 0.0421
+      },
+      {
+        "desired": 19,
+        "painted": 19,
+        "requested": 19,
+        "scroll": 135,
+        "progress": 0.04
+      },
+      {
+        "desired": 18,
+        "painted": 18,
+        "requested": 18,
+        "scroll": 128,
+        "progress": 0.0379
+      },
+      {
+        "desired": 17,
+        "painted": 17,
+        "requested": 17,
+        "scroll": 121,
+        "progress": 0.0358
+      },
+      {
+        "desired": 16,
+        "painted": 16,
+        "requested": 16,
+        "scroll": 114,
+        "progress": 0.0338
+      },
+      {
+        "desired": 15,
+        "painted": 15,
+        "requested": 15,
+        "scroll": 107,
+        "progress": 0.0317
+      },
+      {
+        "desired": 14,
+        "painted": 14,
+        "requested": 14,
+        "scroll": 100,
+        "progress": 0.0296
+      },
+      {
+        "desired": 13,
+        "painted": 13,
+        "requested": 13,
+        "scroll": 92,
+        "progress": 0.0273
+      },
+      {
+        "desired": 12,
+        "painted": 12,
+        "requested": 12,
+        "scroll": 85,
+        "progress": 0.0252
+      },
+      {
+        "desired": 11,
+        "painted": 11,
+        "requested": 11,
+        "scroll": 78,
+        "progress": 0.0231
+      },
+      {
+        "desired": 10,
+        "painted": 10,
+        "requested": 10,
+        "scroll": 71,
+        "progress": 0.021
+      },
+      {
+        "desired": 9,
+        "painted": 9,
+        "requested": 9,
+        "scroll": 64,
+        "progress": 0.019
+      },
+      {
+        "desired": 8,
+        "painted": 8,
+        "requested": 8,
+        "scroll": 57,
+        "progress": 0.0169
+      },
+      {
+        "desired": 7,
+        "painted": 7,
+        "requested": 7,
+        "scroll": 50,
+        "progress": 0.0148
+      },
+      {
+        "desired": 6,
+        "painted": 6,
+        "requested": 6,
+        "scroll": 43,
+        "progress": 0.0127
+      },
+      {
+        "desired": 5,
+        "painted": 5,
+        "requested": 5,
+        "scroll": 36,
+        "progress": 0.0107
+      },
+      {
+        "desired": 4,
+        "painted": 4,
+        "requested": 4,
+        "scroll": 28,
+        "progress": 0.0083
+      },
+      {
+        "desired": 3,
+        "painted": 3,
+        "requested": 3,
+        "scroll": 21,
+        "progress": 0.0062
+      },
+      {
+        "desired": 2,
+        "painted": 2,
+        "requested": 2,
+        "scroll": 14,
+        "progress": 0.0041
+      },
+      {
+        "desired": 1,
+        "painted": 1,
+        "requested": 1,
+        "scroll": 7,
+        "progress": 0.0021
+      },
+      {
+        "desired": 0,
+        "painted": 0,
+        "requested": 0,
+        "scroll": 0,
+        "progress": 0
+      }
+    ],
+    "fast": [
+      {
+        "frame": 0,
+        "total": 476,
+        "bytes": 33177600,
+        "failed": 0,
+        "variant": "mobile"
+      },
+      {
+        "frame": 119,
+        "total": 476,
+        "bytes": 33177600,
+        "failed": 0,
+        "variant": "mobile"
+      },
+      {
+        "frame": 356,
+        "total": 476,
+        "bytes": 33177600,
+        "failed": 0,
+        "variant": "mobile"
+      },
+      {
+        "frame": 475,
+        "total": 476,
+        "bytes": 33177600,
+        "failed": 0,
+        "variant": "mobile"
+      },
+      {
+        "frame": 237,
+        "total": 476,
+        "bytes": 33177600,
+        "failed": 0,
+        "variant": "mobile"
+      },
+      {
+        "frame": 0,
+        "total": 476,
+        "bytes": 33177600,
+        "failed": 0,
+        "variant": "mobile"
+      }
+    ],
+    "meanError": 0,
+    "maxError": 0,
+    "errors": [],
+    "bad": []
+  }
+]

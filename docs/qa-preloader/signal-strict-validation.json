@@ -1,0 +1,137 @@
+{
+  "rows": [
+    {
+      "pins": 0,
+      "loader": false,
+      "lenis": false,
+      "loading": "false",
+      "listeners": [
+        {
+          "key": "documentvisibilitychange",
+          "count": 2
+        },
+        {
+          "key": "windowwheel",
+          "count": 3
+        },
+        {
+          "key": "documentkeydown",
+          "count": 2
+        },
+        {
+          "key": "documenttouchmove",
+          "count": 2
+        },
+        {
+          "key": "documentwheel",
+          "count": 2
+        },
+        {
+          "key": "windowtouchmove",
+          "count": 0
+        },
+        {
+          "key": "windowkeydown",
+          "count": 1
+        },
+        {
+          "key": "windowportfolio:loading",
+          "count": 0
+        },
+        {
+          "key": "windowportfolio:ready",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "pins": 0,
+      "loader": false,
+      "lenis": false,
+      "loading": "false",
+      "listeners": [
+        {
+          "key": "documentvisibilitychange",
+          "count": 2
+        },
+        {
+          "key": "windowwheel",
+          "count": 3
+        },
+        {
+          "key": "documentkeydown",
+          "count": 2
+        },
+        {
+          "key": "documenttouchmove",
+          "count": 2
+        },
+        {
+          "key": "documentwheel",
+          "count": 2
+        },
+        {
+          "key": "windowtouchmove",
+          "count": 0
+        },
+        {
+          "key": "windowkeydown",
+          "count": 1
+        },
+        {
+          "key": "windowportfolio:loading",
+          "count": 0
+        },
+        {
+          "key": "windowportfolio:ready",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "pins": 0,
+      "loader": false,
+      "lenis": false,
+      "loading": "false",
+      "listeners": [
+        {
+          "key": "documentvisibilitychange",
+          "count": 2
+        },
+        {
+          "key": "windowwheel",
+          "count": 3
+        },
+        {
+          "key": "documentkeydown",
+          "count": 2
+        },
+        {
+          "key": "documenttouchmove",
+          "count": 2
+        },
+        {
+          "key": "documentwheel",
+          "count": 2
+        },
+        {
+          "key": "windowtouchmove",
+          "count": 0
+        },
+        {
+          "key": "windowkeydown",
+          "count": 1
+        },
+        {
+          "key": "windowportfolio:loading",
+          "count": 0
+        },
+        {
+          "key": "windowportfolio:ready",
+          "count": 0
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

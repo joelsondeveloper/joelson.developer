@@ -3,7 +3,9 @@
 import { Component, type ReactNode, type RefObject, useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { gsap } from "@/lib/gsap";
+import { usePreparedResource } from "@/lib/scene-preparation";
 import { experiences, type Experience } from "@/data/experiences";
 import { MemoryViewer, type Origin } from "./MemoryViewer";
 import type { Gaze } from "./CrtCharacter";
@@ -15,23 +17,23 @@ class CharacterBoundary extends Component<{ children: ReactNode; onError: () => 
   render() { return this.state.failed ? null : this.props.children; }
 }
 export function ExperienceScene({ sceneRef }: { sceneRef: RefObject<HTMLElement | null> }) {
+  const prepared = usePreparedResource("character-fallback");
   const gaze = useRef<Gaze>({ x: 0, y: 0, events: new EventTarget() }), buttons = useRef<(HTMLButtonElement | null)[]>([]);
-  const [active, setActive] = useState(false), [near, setNear] = useState(false), [reduced, setReduced] = useState(true), [ready, setReady] = useState(false), [failed, setFailed] = useState(false);
+  const [active, setActive] = useState(false), [near, setNear] = useState(false), [ready, setReady] = useState(false), [failed, setFailed] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null), [selection, setSelection] = useState<{ memory: Experience; origin: Origin } | null>(null);
-  const [motionOverride, setMotionOverride] = useState(false);
-  const motionReduced = reduced && !motionOverride;
+  const reduced = usePrefersReducedMotion();
+  const motionReduced = reduced;
   const opening = useRef<gsap.core.Tween | null>(null), previous = useRef<number | null>(null);
   const moveGaze = useCallback((x: number, y: number) => {
     gaze.current.x = x; gaze.current.y = y; gaze.current.events.dispatchEvent(new Event("change"));
   }, []);
   useEffect(() => {
     const root = sceneRef.current!, portrait = root.parentElement!.querySelector<HTMLElement>(".portrait-scene")!;
-    const sync = () => { const time = Number(portrait.dataset.aboutTime || 0); setNear(time >= 6.55); setActive(time >= 7.38); };
+    const sync = () => { const time = Number(portrait.dataset.aboutTime || 0); setNear(time >= 6.55 && time < 9.7); setActive(time >= 7.38 && time < 9.55); };
     const observer = new MutationObserver(sync); observer.observe(portrait, { attributes: true, attributeFilter: ["data-about-time"] }); sync();
-    const query = window.matchMedia("(prefers-reduced-motion:reduce)"); const motion = () => setReduced(query.matches); motion(); query.addEventListener("change", motion);
     const neutral = () => { if (document.hidden) moveGaze(0, 0); }; document.addEventListener("visibilitychange", neutral);
     const unfocus = () => { moveGaze(0, 0); }; window.addEventListener("blur", unfocus);
-    return () => { observer.disconnect(); query.removeEventListener("change", motion); document.removeEventListener("visibilitychange", neutral); window.removeEventListener("blur", unfocus); opening.current?.kill(); };
+    return () => { observer.disconnect(); document.removeEventListener("visibilitychange", neutral); window.removeEventListener("blur", unfocus); opening.current?.kill(); };
   }, [sceneRef, moveGaze]);
   useEffect(() => { if (near && !failed) void import("./CrtCharacter").then(module => module.preloadCharacter()); }, [near, failed]);
   useEffect(() => {
@@ -72,11 +74,9 @@ export function ExperienceScene({ sceneRef }: { sceneRef: RefObject<HTMLElement 
   };
   return <section id="experiencias" ref={sceneRef} className="experience-scene" aria-labelledby="experience-title" aria-hidden={!active} inert={!active} data-active={active} data-model-ready={ready} data-reduced={motionReduced}>
     <div className="experience-room" aria-hidden="true"><i /><i /><i /></div>
-    <header className="experience-topline"><span>JOELSON® / ARQUIVO DE MEMÓRIAS</span><span>CANAL 04 · EXPERIÊNCIAS</span></header>
     <div className="experience-editorial" data-experience-entry><p>APRENDER. CONSTRUIR. CONTINUAR.</p><h2 id="experience-title">Experiências<span>& memórias.</span></h2><div>Um arquivo vivo do que aprendo<br />e construo pelo caminho.</div><small>ESCOLHA UMA POLAROID PARA EXPLORAR ↗</small></div>
-    {reduced && <button className="experience-motion-control" type="button" aria-pressed={motionOverride} onClick={() => { setMotionOverride(value => !value); moveGaze(0, 0); }}>{motionOverride ? "Pausar olhar interativo" : "Ativar olhar interativo"}</button>}
     <div className="experience-character" aria-hidden="true">
-      {near && <Image className={ready && active && !failed ? "character-fallback character-fallback-hidden" : "character-fallback"} src="/images/experiences/crt-character.webp" alt="" fill sizes="(max-width:767px) 100vw, 55vw" quality={90} />}
+      {(near || prepared) && <Image className={ready && active && !failed ? "character-fallback character-fallback-hidden" : "character-fallback"} src="/images/experiences/crt-character.webp" alt="" fill sizes="(max-width:767px) 100vw, 55vw" quality={90} />}
       {active && !failed && <CharacterBoundary onError={unavailable}><Character gaze={gaze} reduced={motionReduced} reaction={hovered !== null || selection !== null} onReady={loaded} onDispose={disposed} /></CharacterBoundary>}
       <div className="experience-character-fade" />
     </div>

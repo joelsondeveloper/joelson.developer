@@ -11,10 +11,6 @@ export function PortraitScene({ sceneRef }: { sceneRef: RefObject<HTMLElement | 
     <section ref={sceneRef} id="sobre" className="portrait-scene" aria-labelledby="portrait-name" aria-hidden="true" inert data-active="false">
       <InteractiveSmoke sceneRef={sceneRef} />
       <div className="portrait-orbit" aria-hidden="true" />
-      <header className="portrait-header" data-portrait-entry>
-        <span className="portrait-brand">JOELSON<span aria-hidden="true">®</span></span>
-        <span className="portrait-channel">CANAL 02 <span aria-hidden="true">/</span> SOBRE MIM</span>
-      </header>
       <div className="portrait-index" data-portrait-entry>
         <span className="portrait-index-label">SOBRE MIM</span>
         <span className="portrait-number" aria-hidden="true">02</span>

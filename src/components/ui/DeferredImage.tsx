@@ -3,14 +3,17 @@
 import Image from "next/image";
 import type { ImageProps } from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { usePreparedResource } from "@/lib/scene-preparation";
 import { imageAssets } from "@/lib/image-assets";
 
 type Props = ImageProps & { activation?: "immediate" | "nearby" | "portrait" };
 
 /** Prewarm the next scene without requesting every hidden image at page load. */
 export function DeferredImage({ activation = "immediate", ...props }: Props) {
+  const prepared = usePreparedResource(typeof props.src === "string" ? props.src : "");
   const root = useRef<HTMLSpanElement>(null);
-  const [ready, setReady] = useState(activation === "immediate");
+  const [requested, setReady] = useState(activation === "immediate");
+  const ready = requested || prepared;
   useEffect(() => {
     if (ready) return;
     const element = root.current;
@@ -34,12 +37,13 @@ export function DeferredImage({ activation = "immediate", ...props }: Props) {
     }, { rootMargin: "400px 0px" });
     observer.observe(element);
     return () => observer.disconnect();
-  }, [activation, ready]);
+  }, [activation, ready, prepared]);
 
   const asset = typeof props.src === "string" ? imageAssets[props.src] : undefined;
   return <span ref={root} className="deferred-image" data-image-ready={ready}>
     {ready && <Image {...props} alt={props.alt} src={asset?.src ?? props.src} width={asset?.width ?? props.width} height={asset?.height ?? props.height} placeholder={asset ? "blur" : "empty"} blurDataURL={asset?.blurDataURL} quality={90} decoding="async" loading={activation === "immediate" ? "lazy" : "eager"} />}
   </span>;
 }
+
 
 

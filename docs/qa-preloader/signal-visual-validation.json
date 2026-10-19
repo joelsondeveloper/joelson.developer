@@ -1,0 +1,53 @@
+[
+  {
+    "pass": "cold",
+    "ms": 5363,
+    "frame": "0",
+    "decodedBytes": 22118400,
+    "ready": "false",
+    "opacity": "1",
+    "heavy": [
+      {
+        "url": "http://localhost:3001/models/vhs-cassette.glb",
+        "transfer": 5101260,
+        "body": 5100960
+      },
+      {
+        "url": "http://localhost:3001/models/crt-character-parts.glb",
+        "transfer": 6001024,
+        "body": 6000724
+      }
+    ]
+  },
+  {
+    "pass": "warm",
+    "ms": 4065,
+    "frame": "0",
+    "decodedBytes": 22118400,
+    "ready": "false",
+    "opacity": "1",
+    "heavy": [
+      {
+        "url": "http://localhost:3001/models/vhs-cassette.glb",
+        "transfer": 0,
+        "body": 5100960
+      },
+      {
+        "url": "http://localhost:3001/models/crt-character-parts.glb",
+        "transfer": 0,
+        "body": 6000724
+      }
+    ]
+  },
+  {
+    "autoFallback": {
+      "fallback": "true",
+      "inert": false,
+      "loading": "false"
+    }
+  },
+  {
+    "saveData": true,
+    "heavy": []
+  }
+]

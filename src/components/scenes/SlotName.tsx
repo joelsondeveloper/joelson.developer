@@ -1,5 +1,6 @@
 "use client";
 
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 
@@ -9,11 +10,12 @@ const randomLetter = () => SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
 
 /** Independent letter reels; movement renews the spin, stationary hover never does. */
 export function SlotName() {
+  const reduced = usePrefersReducedMotion();
   const nameRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const name = nameRef.current;
-    if (!name) return;
+    if (!name || reduced) return;
     const tracks = [...name.querySelectorAll<HTMLElement>(".name-reel-track")];
     let loops: gsap.core.Tween[] = [], endings: gsap.core.Tween[] = [];
     let timeout: ReturnType<typeof setTimeout> | undefined;
@@ -95,7 +97,7 @@ export function SlotName() {
       name.removeEventListener("keydown", keyboard);
       tracks.forEach(track => { gsap.set(track, { clearProps: "transform" }); while (track.children.length > 2) track.lastElementChild!.remove(); });
     };
-  }, []);
+  }, [reduced]);
 
   return (
     <h2 ref={nameRef} id="portrait-name" className="portrait-name" data-portrait-name data-word="JOELSON" data-spinning="false" aria-label="Joelson Vicente" tabIndex={0}>

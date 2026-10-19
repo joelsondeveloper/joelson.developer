@@ -1,5 +1,6 @@
 "use client";
 
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { useEffect, useRef } from "react";
 import type { RefObject } from "react";
 import { smokeFragment, smokeVertex } from "./smoke-shader";
@@ -7,12 +8,14 @@ import { SmokeFluid } from "./smoke-fluid";
 
 /** Pigment transported by an incompressible flow; no React updates per frame. */
 export function InteractiveSmoke({ sceneRef }: { sceneRef: RefObject<HTMLElement | null> }) {
+  const reduced = usePrefersReducedMotion();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const scene = sceneRef.current;
     if (!canvas || !scene) return;
+    if (reduced) { canvas.dataset.renderer = "fallback"; return; }
     const gl = canvas.getContext("webgl", { alpha: false, antialias: false, depth: false, powerPreference: "low-power" });
     if (!gl) { canvas.dataset.renderer = "fallback"; return; }
     const shaders: WebGLShader[] = [];
@@ -140,7 +143,7 @@ export function InteractiveSmoke({ sceneRef }: { sceneRef: RefObject<HTMLElement
       gl.bindTexture(gl.TEXTURE_2D, null); gl.deleteTexture(texture);
       gl.deleteBuffer(buffer); gl.deleteProgram(program);
     };
-  }, [sceneRef]);
+  }, [sceneRef, reduced]);
 
   return <canvas ref={canvasRef} className="portrait-smoke" aria-hidden="true" />;
 }

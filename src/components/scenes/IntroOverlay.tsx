@@ -1,17 +1,17 @@
 import type { RefObject } from "react";
 import { PolaroidCard, type PolaroidCardData } from "@/components/ui/PolaroidCard";
-import { VhsIndicator } from "@/components/ui/VhsIndicator";
+import { ViewfinderCorners } from "@/components/ui/ViewfinderCorners";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
-/** Decorative crops of our existing footage, pending the owner's final photographs. */
+/** Local thumbnails from the existing sections, sharing the portfolio navigation. */
 export const introPolaroids: PolaroidCardData[] = [
-  { id: "projects", label: "PROJETOS", image: "/images/intro-polaroids/projects.webp", rotation: -12 },
-  { id: "experience", label: "EXPERIÊNCIA", image: "/images/intro-polaroids/experience.webp", rotation: 12 },
-  { id: "about", label: "SOBRE MIM", image: "/images/intro-polaroids/about.webp", rotation: -15 },
-  { id: "contact", label: "CONTATO", image: "/images/intro-polaroids/contact.webp", rotation: 10 },
+  { id: "projects", label: "PROJETOS", image: "/images/navigation/projects.webp", href: "#projetos", alt: "Fitas VHS no ambiente da coleção de projetos", rotation: -12 },
+  { id: "experience", label: "EXPERIÊNCIA", image: "/images/navigation/experience.webp", href: "#experiencias", alt: "Personagem com cabeça CRT da seção Experiências", rotation: 12 },
+  { id: "about", label: "SOBRE MIM", image: "/images/navigation/about.webp", href: "#sobre", alt: "Retrato de Joelson", rotation: -15 },
+  { id: "contact", label: "CONTATO", image: "/images/navigation/contact.webp", href: "#contatos", alt: "Cabine telefônica iluminada da seção Contatos", rotation: 10 },
 ];
 
-const sections = ["SOBRE", "PROJETOS", "EXPERIÊNCIA", "CONTATO"];
+
 
 export function IntroOverlay({ overlayRef }: { overlayRef: RefObject<HTMLDivElement | null> }) {
   return (
@@ -19,19 +19,10 @@ export function IntroOverlay({ overlayRef }: { overlayRef: RefObject<HTMLDivElem
       <div className="intro-atmosphere" data-intro-layer="atmosphere" aria-hidden="true" />
       <div className="intro-analog" data-intro-layer="graphics" aria-hidden="true">
         <div className="intro-analog-entry" data-entry>
-        <i className="viewfinder-corner corner-tl" /><i className="viewfinder-corner corner-tr" />
-        <i className="viewfinder-corner corner-bl" /><i className="viewfinder-corner corner-br" />
-        <i className="tracking-line tracking-line--top" /><i className="tracking-line tracking-line--bottom" />
+        <ViewfinderCorners />
         <span className="vhs-record">SP <span>●</span> 00:00:00</span>
         </div>
       </div>
-      <header className="intro-header" data-intro-layer="header">
-        <div data-entry><VhsIndicator /></div>
-        <nav aria-label="Seções do portfólio" data-entry>
-          {/* Labels become links when their real destinations are implemented. */}
-          <ul className="intro-navigation">{sections.map(section => <li key={section}>{(section === "PROJETOS" || section === "EXPERIÊNCIA") ? <a href={section === "PROJETOS" ? "#projetos" : "#experiencias"} onClick={event => { event.preventDefault(); const target = document.getElementById("cinematic-intro"); if (target) window.scrollTo({ top: window.innerHeight * 4 * (section === "PROJETOS" ? 4.75 : 7.65), behavior: "instant" }); }}>{section}</a> : <span>{section}</span>}</li>)}</ul>
-        </nav>
-      </header>
       <div className="intro-presentation" data-intro-layer="presentation">
         <div data-entry>
           <p className="intro-eyebrow">OLÁ, EU SOU</p>

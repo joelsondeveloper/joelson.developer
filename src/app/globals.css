@@ -4,6 +4,10 @@
 @import "../styles/portrait-scene.css";
 @import "../styles/projects.css";
 @import "../styles/experiences.css";
+@import "../styles/contacts.css";
+@import "../styles/contact-overlay.css";
+@import "../styles/signal-preloader.css";
+@import "../styles/site-refinements.css";
 
 /* ==========================================================================
    Design tokens — retro / cinematic / VHS identity
@@ -112,17 +116,10 @@ ol[role="list"] {
   height: 100dvh;
 }
 
-/* Respect user motion preference globally as a baseline safeguard.
-   The GSAP layer additionally skips animation setup entirely. */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+/* The first-scene control owns reduced motion for both CSS and JS. */
+html[data-reduced-motion="true"] *, html[data-reduced-motion="true"] *::before, html[data-reduced-motion="true"] *::after {
+  animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+  transition-duration: .01ms !important; scroll-behavior: auto !important;
 }
 
 /* Scene 01: canvas and initial-frame fallback use the same cover framing. */

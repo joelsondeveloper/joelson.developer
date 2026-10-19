@@ -1,0 +1,20 @@
+[
+  {
+    "name": "vhs-cassette.glb",
+    "bytes": 5783064,
+    "images": 4,
+    "pixels": 8716288,
+    "decodedRGBABytes": 34865152,
+    "maxWidth": 2048,
+    "maxHeight": 2048
+  },
+  {
+    "name": "crt-character-parts.glb",
+    "bytes": 6470588,
+    "images": 195,
+    "pixels": 12908544,
+    "decodedRGBABytes": 51634176,
+    "maxWidth": 1024,
+    "maxHeight": 1024
+  }
+]

@@ -1,285 +1,624 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGsap } from "./use-gsap";
 import { usePrefersReducedMotion } from "./use-prefers-reduced-motion";
 
-export const INTRO_FRAME_COUNT = 192;
-const CACHE_LIMIT = 24;
-const DECODED_BUDGET = 48 * 1024 * 1024;
-const COMPRESSED_LIMIT = 48;
+import { introSequence, introFrameUrl as frameUrl } from "@/lib/intro-sequence";
 
-/** Scroll-controlled canvas with compressed prefetch and a bounded decoded cache. */
+export const INTRO_FRAME_COUNT = introSequence.desktop.frameCount;
+
+const MB = 1024 * 1024;
+const DESKTOP_BUDGET = 96 * MB;
+const MOBILE_BUDGET = 32 * MB;
+
+const MAX_BITMAPS = 28;
+const MAX_BLOBS = 96;
+const MAX_JOBS = 3;
+const MAX_RETRIES = 2;
+
+type Variant = "desktop" | "mobile";
+
+function clamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, value));
+}
+
+
 export function useImageSequence(
   scrollDistanceVh = 4,
   configureTimeline?: (timeline: gsap.core.Timeline) => void,
   onProgress?: (progress: number) => void,
 ) {
   const prefersReducedMotion = usePrefersReducedMotion();
+  const reducedRef = useRef(prefersReducedMotion);
+  useLayoutEffect(() => { reducedRef.current = prefersReducedMotion; }, [prefersReducedMotion]);
+
   const containerRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Store normalized progress so desktop/mobile use the
+  // same scroll position when responsive assets are switched.
+  const progressRef = useRef(0);
+
   const requestedFrame = useRef(0);
-  const previousPaint = useRef<HTMLCanvasElement | null>(null);
-  const [variant, setVariant] = useState<"desktop" | "mobile">(() =>
-    typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop");
   const requestDraw = useRef<(() => void) | null>(null);
+
+  const [variant, setVariant] = useState<Variant>(() => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop");
   const [isReady, setIsReady] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     const query = window.matchMedia("(max-width: 767px)");
-    const updateVariant = () => setVariant(query.matches ? "mobile" : "desktop");
-    query.addEventListener("change", updateVariant);
-    return () => query.removeEventListener("change", updateVariant);
+
+    const update = () => {
+      setVariant(query.matches ? "mobile" : "desktop");
+    };
+
+    update();
+    query.addEventListener("change", update);
+
+    return () => query.removeEventListener("change", update);
   }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
-    const context = canvas?.getContext("2d", { alpha: false });
-    if (!canvas || !container || !context) return;
+    const ctx = canvas?.getContext("2d", { alpha: false });
 
-    const abort = new AbortController();
-    const frameBytes = (variant === "mobile" ? 768 * 432 : 1280 * 720) * 4;
-    const cacheLimit = Math.min(CACHE_LIMIT, Math.floor(DECODED_BUDGET / frameBytes));
-    const warmRadius = Math.min(10, Math.floor((cacheLimit - 2) / 2));
-    let direction = 1, previousRequest = 0, prefetching = false;
-    const blobs = new Map<number, Promise<Blob>>();
-    const decoded = new Map<number, ImageBitmap>();
-    const decoding = new Set<number>();
-    const failed = new Set<number>();
-    let active = true, sleeping = false;
+    if (!canvas || !container || !ctx) return;
+
+    let active = true;
+    let sleeping = false;
+    let raf = 0;
     let jobs = 0;
-    let animationFrame = 0;
     let lastDrawn = -1;
     let revealed = false;
+    let direction = 1;
+    let previousTarget = 0;
+    let pumpQueued = false;
 
-    async function fetchFrame(index: number): Promise<Blob> {
-      const existing = blobs.get(index);
-      if (existing) return existing;
-      const pending = (async () => {
-        const url = `/images/tv-zoom/${variant}/frame-${String(index + 1).padStart(4, "0")}.webp`;
-        for (let attempt = 0; attempt < 2; attempt++) {
-          try {
-            const response = await fetch(url, { signal: abort.signal, cache: "force-cache" });
-            if (!response.ok) throw new Error(`Frame HTTP ${response.status}`);
-            return await response.blob();
-          } catch (error) {
-            if (!active || attempt === 1) throw error;
-          }
-        }
-        throw new Error("Frame unavailable");
-      })();
-      blobs.set(index, pending);
-      return pending;
-    }
+    const abort = new AbortController();
 
-    function draw() {
-      animationFrame = 0;
-      if (!active || decoded.size === 0) return;
-      const target = requestedFrame.current;
-      // Keep a painted frame while a fast jump is still decoding its target.
-      let index = target;
-      if (!decoded.has(index)) {
-        index = [...decoded.keys()].reduce((nearest, candidate) =>
-          Math.abs(candidate - target) < Math.abs(nearest - target) ? candidate : nearest,
-        );
-      }
-      const image = decoded.get(index);
-      if (!image || index === lastDrawn) return;
-      const scale = Math.max(canvas!.width / image.width, canvas!.height / image.height);
-      const width = image.width * scale;
-      const height = image.height * scale;
-      context!.drawImage(image, (canvas!.width - width) / 2, (canvas!.height - height) / 2, width, height);
-      lastDrawn = index;
-      previousPaint.current = null;
-      canvas!.style.visibility = "visible";
-      canvas!.dataset.frame = String(index);
-      if (!revealed) {
-        revealed = true;
-        setIsReady(true);
-      }
-    }
+    const isMobile = variant === "mobile";
+    const frameCount = introSequence[variant].frameCount;
+    const lastFrame = frameCount - 1;
+    const anchorFrames = [0, Math.round(lastFrame / 2), lastFrame];
 
-    function scheduleDraw() {
-      if (active && !animationFrame) animationFrame = requestAnimationFrame(draw);
-    }
+    const frameWidth = introSequence[variant].width;
+    const frameHeight = introSequence[variant].height;
+    const frameBytes = frameWidth * frameHeight * 4;
 
-    function evict() {
-      // Keep frame zero available for an immediate return to the beginning.
-      while (decoded.size > cacheLimit) {
-        const candidates = [...decoded.keys()].filter(index => index !== 0 && index !== requestedFrame.current);
-        const farthest = candidates.reduce((a, b) =>
-          Math.abs(b - requestedFrame.current) > Math.abs(a - requestedFrame.current) ? b : a,
-        );
-        decoded.get(farthest)?.close();
-        decoded.delete(farthest);
-      }
+    const budget = isMobile ? MOBILE_BUDGET : DESKTOP_BUDGET;
+
+    const cacheLimit = clamp(Math.floor(budget / frameBytes), 3, MAX_BITMAPS);
+
+    const warmRadius = Math.max(
+      2,
+      Math.min(8, Math.floor((cacheLimit - 2) / 2)),
+    );
+
+    const decoded = new Map<number, ImageBitmap>();
+    const blobs = new Map<number, Blob>();
+    const loading = new Set<number>();
+    const failures = new Map<number, number>();
+    const permanentlyFailed = new Set<number>();
+
+    requestedFrame.current = clamp(
+      reducedRef.current ? 0 : Math.round(progressRef.current * lastFrame),
+      0,
+      lastFrame,
+    );
+
+    let requested = requestedFrame.current;
+    let lastValidFrame = -1;
+    previousTarget = requested;
+
+    const stats = {
+      draws: 0,
+      misses: 0,
+      substitutions: 0,
+      failed: 0,
+    };
+
+    function updateStats() {
+      if (!active) return;
+
       canvas!.dataset.cachedFrames = String(decoded.size);
       canvas!.dataset.decodedBytes = String(decoded.size * frameBytes);
       canvas!.dataset.cacheLimit = String(cacheLimit);
+      canvas!.dataset.compressedFrames = String(blobs.size);
+      canvas!.dataset.frameMisses = String(stats.misses);
+      canvas!.dataset.frameSubstitutions = String(stats.substitutions);
+      canvas!.dataset.draws = String(stats.draws);
+      canvas!.dataset.failedFrames = String(stats.failed);
+      canvas!.dataset.totalFrames = String(frameCount);
+      canvas!.dataset.variant = variant;
+    }
+
+    function touch(index: number) {
+      const image = decoded.get(index);
+      if (!image) return;
+
+      decoded.delete(index);
+      decoded.set(index, image);
+    }
+
+    function evictDecoded() {
+      while (decoded.size > cacheLimit) {
+        const protectedFrames = new Set([...anchorFrames, requested, lastDrawn]);
+
+        const candidates = [...decoded.keys()].filter(
+          (index) => !protectedFrames.has(index),
+        );
+
+        if (!candidates.length) break;
+
+        candidates.sort(
+          (a, b) => Math.abs(b - requested) - Math.abs(a - requested),
+        );
+
+        const victim = candidates[0];
+
+        decoded.get(victim)?.close();
+        decoded.delete(victim);
+      }
+
+      updateStats();
+    }
+
+    function evictBlobs() {
+      while (blobs.size > MAX_BLOBS) {
+        const candidates = [...blobs.keys()].filter(
+          (index) => index !== requested && !loading.has(index),
+        );
+
+        if (!candidates.length) break;
+
+        candidates.sort(
+          (a, b) => Math.abs(b - requested) - Math.abs(a - requested),
+        );
+
+        blobs.delete(candidates[0]);
+      }
+
+      updateStats();
+    }
+
+    function findFrame(target: number): number | null {
+      if (decoded.has(target)) return target;
+      let nearest: number | null = decoded.has(lastDrawn) ? lastDrawn : null;
+      let distance = nearest === null ? Infinity : Math.abs(nearest - target);
+      for (const index of decoded.keys()) {
+        // Advance toward the requested frame without overshooting or flickering backwards.
+        if (lastDrawn >= 0 && (target >= lastDrawn ? index < lastDrawn || index > target : index > lastDrawn || index < target)) continue;
+        const nextDistance = Math.abs(index - target);
+        if (nextDistance < distance) { nearest = index; distance = nextDistance; }
+      }
+      return nearest;
+    }
+
+    function draw() {
+      raf = 0;
+      if (!active) return;
+
+      const target = requestedFrame.current;
+      // Retain the already painted canvas during a responsive source switch/resize.
+      if (lastDrawn < 0 && canvas!.dataset.frame !== undefined && !decoded.has(target)) return;
+      const index = findFrame(target);
+
+      if (index === null) {
+        stats.misses++;
+        updateStats();
+        return;
+      }
+
+      if (index === lastDrawn) return;
+
+      const image = decoded.get(index);
+      if (!image) return;
+
+      if (index !== target) {
+        stats.substitutions++;
+      }
+
+      const scale = Math.max(
+        canvas!.width / image.width,
+        canvas!.height / image.height,
+      );
+
+      const width = image.width * scale;
+      const height = image.height * scale;
+
+      ctx!.drawImage(
+        image,
+        (canvas!.width - width) / 2,
+        (canvas!.height - height) / 2,
+        width,
+        height,
+      );
+
+      lastDrawn = index;
+      lastValidFrame = index;
+
+      canvas!.dataset.frame = String(index);
+      canvas!.style.visibility = "visible";
+
+      stats.draws++;
+      touch(index);
+      updateStats();
+
+      if (!revealed) { revealed = true; setIsReady(true); }
+    }
+
+    function scheduleDraw() {
+      if (!active || raf) return;
+      raf = requestAnimationFrame(draw);
+    }
+
+    async function loadFrame(index: number) {
+      if (
+        !active ||
+        loading.has(index) ||
+        decoded.has(index) ||
+        permanentlyFailed.has(index)
+      ) {
+        return;
+      }
+
+      loading.add(index);
+      jobs++;
+
+      try {
+        let blob = blobs.get(index);
+
+        if (!blob) {
+          const response = await fetch(frameUrl(index, variant), {
+            signal: abort.signal,
+            cache: "force-cache",
+          });
+
+          if (!response.ok) {
+            throw new Error(`Frame HTTP ${response.status}`);
+          }
+
+          blob = await response.blob();
+
+          if (!active) return;
+
+          blobs.set(index, blob);
+          evictBlobs();
+        }
+
+        const bitmap = await createImageBitmap(blob);
+
+        if (!active) {
+          bitmap.close();
+          return;
+        }
+
+        if (sleeping && index !== 0 && index !== requestedFrame.current) { bitmap.close(); return; }
+
+        if (decoded.has(index)) {
+          bitmap.close();
+          return;
+        }
+
+        decoded.set(index, bitmap);
+        touch(index);
+
+        evictDecoded();
+        scheduleDraw();
+      } catch (error) {
+        if (!active || abort.signal.aborted) return;
+
+        const attempts = (failures.get(index) ?? 0) + 1;
+        failures.set(index, attempts);
+        blobs.delete(index);
+
+        if (attempts >= MAX_RETRIES) {
+          permanentlyFailed.add(index);
+          stats.failed++;
+          setHasError(true);
+
+          console.warn(
+            `[ImageSequence] Failed frame ${index + 1}/${frameCount}`,
+            error,
+          );
+        }
+      } finally {
+        loading.delete(index);
+        jobs--;
+
+        if (active) {
+          updateStats();
+          queuePump();
+        }
+      }
+    }
+
+    function buildPriority(): number[] {
+      const target = requestedFrame.current;
+      const result: number[] = [];
+      const seen = new Set<number>();
+
+      function add(index: number) {
+        if (index < 0 || index >= frameCount || seen.has(index)) {
+          return;
+        }
+
+        seen.add(index);
+        result.push(index);
+      }
+
+      add(target);
+
+      for (const anchor of anchorFrames) add(anchor);
+
+      for (let offset = 1; offset <= warmRadius; offset++) {
+        add(target + offset * direction);
+        add(target - offset * direction);
+      }
+
+      for (let offset = warmRadius + 1; offset <= warmRadius + 4; offset++) {
+        add(target + offset * direction);
+      }
+
+      if (target === 0) {
+        for (let index = 1; index <= warmRadius + 4; index++) {
+          add(index);
+        }
+      }
+
+      return result;
     }
 
     function pump() {
-      if (!active || (sleeping && decoded.has(requestedFrame.current))) return;
-      const target = requestedFrame.current;
-      const priority = [target];
-      if (!sleeping) for (let offset = 1; offset <= warmRadius; offset++) priority.push(target + offset, target - offset);
+      if (!active || sleeping) return;
+
+      const priority = buildPriority();
+
       for (const index of priority) {
-        if (jobs >= 2) break;
-        if (index < 0 || index >= INTRO_FRAME_COUNT || decoded.has(index) || decoding.has(index) || failed.has(index)) continue;
-        jobs++;
-        decoding.add(index);
-        void fetchFrame(index)
-          .then(blob => active ? createImageBitmap(blob) : null)
-          .then(image => {
-            if (!image) return;
-            if (!active) { image.close(); return; }
-            if (sleeping && index !== 0 && index !== requestedFrame.current) { image.close(); return; }
-            decoded.set(index, image);
-            evict();
-            scheduleDraw();
-          })
-          .catch(() => {
-            if (active) {
-              failed.add(index);
-              setHasError(true);
-            }
-          })
-          .finally(() => {
-            jobs--;
-            decoding.delete(index);
-            pump();
-          });
+        if (jobs >= MAX_JOBS) break;
+
+        if (
+          decoded.has(index) ||
+          loading.has(index) ||
+          permanentlyFailed.has(index)
+        ) {
+          continue;
+        }
+
+        // Keep one slot available for the exact frame requested by a scroll jump.
+        if (index !== requestedFrame.current && jobs >= MAX_JOBS - 1) continue;
+        void loadFrame(index);
       }
+    }
+
+    function queuePump() {
+      if (!active || pumpQueued) return;
+
+      pumpQueued = true;
+
+      queueMicrotask(() => {
+        pumpQueued = false;
+        if (active) pump();
+      });
     }
 
     function request() {
-      if (requestedFrame.current !== previousRequest) direction = requestedFrame.current > previousRequest ? 1 : -1;
-      previousRequest = requestedFrame.current;
-      scheduleDraw(); pump();
-      void prefetchNearby();
-    }
+      if (!active) return;
 
-    async function prefetchNearby() {
-      // Only prewarm a short look-ahead after movement starts. Demand loading has priority.
-      if (prefetching || sleeping || requestedFrame.current === 0) return;
-      prefetching = true;
-      const center = requestedFrame.current;
-      try {
-        for (let offset = warmRadius + 1; active && !sleeping && offset <= warmRadius + 8; offset++) {
-          if (Math.abs(requestedFrame.current - center) > warmRadius) break;
-          const index = center + direction * offset;
-          if (index < 0 || index >= INTRO_FRAME_COUNT) continue;
-          try { await fetchFrame(index); } catch { /* Demand loading reports failures. */ }
-        }
-      } finally {
-        prefetching = false;
-        if (active) {
-          while (blobs.size > COMPRESSED_LIMIT) {
-            const candidates = [...blobs.keys()].filter(index => index !== 0 && index !== requestedFrame.current && !decoding.has(index));
-            if (!candidates.length) break;
-            const farthest = candidates.reduce((a, b) => Math.abs(b - requestedFrame.current) > Math.abs(a - requestedFrame.current) ? b : a);
-            blobs.delete(farthest);
-          }
-          canvas!.dataset.compressedFrames = String(blobs.size);
-        }
+      requestedFrame.current = clamp(
+        reducedRef.current ? 0 : Math.round(progressRef.current * lastFrame),
+        0,
+        lastFrame,
+      );
+
+      requested = requestedFrame.current;
+      canvas!.dataset.requestedFrame = String(requested);
+      if (requested === previousTarget && lastDrawn === requested) return;
+
+      if (requested !== previousTarget) {
+        direction = requested > previousTarget ? 1 : -1;
+        previousTarget = requested;
       }
+
+      // A ready bitmap can paint in the same ScrollTrigger update, with no catch-up tween.
+      if (decoded.has(requested)) { if (raf) cancelAnimationFrame(raf); draw(); } else scheduleDraw();
+      queuePump();
     }
 
     function resize() {
+      if (!active) return;
+
       const bounds = container!.getBoundingClientRect();
       const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas!.width = Math.max(1, Math.round(bounds.width * ratio));
-      canvas!.height = Math.max(1, Math.round(bounds.height * ratio));
-      lastDrawn = -1;
-      if (previousPaint.current) context!.drawImage(previousPaint.current, 0, 0, canvas!.width, canvas!.height);
-      if (decoded.size) draw();
+
+      const width = Math.max(1, Math.round(bounds.width * ratio));
+
+      const height = Math.max(1, Math.round(bounds.height * ratio));
+
+      if (canvas!.width !== width || canvas!.height !== height) {
+        const snapshot = document.createElement("canvas");
+        snapshot.width = canvas!.width; snapshot.height = canvas!.height;
+        snapshot.getContext("2d")?.drawImage(canvas!, 0, 0);
+        canvas!.width = width;
+        canvas!.height = height;
+        ctx!.drawImage(snapshot, 0, 0, width, height);
+        lastDrawn = -1;
+      }
+
       scheduleDraw();
     }
 
-    requestDraw.current = request;
-    const observer = new ResizeObserver(resize);
-    observer.observe(container);
-    const setSleeping = (value: boolean) => {
+    function setSleeping(value: boolean) {
       if (sleeping === value) return;
+
       sleeping = value;
+
       if (sleeping) {
         for (const [index, bitmap] of decoded) {
-          if (index !== 0 && index !== requestedFrame.current) { bitmap.close(); decoded.delete(index); }
+          if (!anchorFrames.includes(index) && index !== requestedFrame.current && index !== lastValidFrame) {
+            bitmap.close();
+            decoded.delete(index);
+          }
         }
-        for (const index of blobs.keys()) if (index !== 0 && index !== requestedFrame.current) blobs.delete(index);
-        canvas.dataset.cachedFrames = String(decoded.size);
-        canvas.dataset.decodedBytes = String(decoded.size * frameBytes);
-        pump();
-      } else request();
-    };
+
+        evictDecoded();
+      } else {
+        request();
+        queuePump();
+      }
+    }
+
+    requestDraw.current = request;
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(container);
+
     const portrait = container.querySelector<HTMLElement>(".portrait-scene");
+
     const sceneObserver = new MutationObserver(() => {
-      if (portrait) setSleeping(Number(portrait.dataset.aboutTime ?? 0) > 1.05);
+      if (!portrait) return;
+
+      const aboutTime = Number(portrait.dataset.aboutTime ?? 0);
+
+      setSleeping(aboutTime > 1.05);
     });
-    if (portrait) sceneObserver.observe(portrait, { attributes: true, attributeFilter: ["data-about-time"] });
-    const visibilityObserver = new IntersectionObserver(entries => {
-      if (variant === "mobile") setSleeping(!entries[0].isIntersecting);
+
+    if (portrait) {
+      sceneObserver.observe(portrait, {
+        attributes: true,
+        attributeFilter: ["data-about-time"],
+      });
+
+      // Apply the current scene state immediately.
+      setSleeping(Number(portrait.dataset.aboutTime ?? 0) > 1.05);
+    }
+
+    const visibilityObserver = new IntersectionObserver((entries) => {
+      if (isMobile) {
+        setSleeping(!entries[0].isIntersecting);
+      }
     });
+
     visibilityObserver.observe(container);
+
     resize();
-    request();
+    queuePump();
 
     return () => {
       active = false;
-      // Preserve the painted image through a desktop/mobile asset switch.
-      const snapshot = document.createElement("canvas");
-      snapshot.width = canvas.width; snapshot.height = canvas.height;
-      snapshot.getContext("2d")?.drawImage(canvas, 0, 0);
-      previousPaint.current = snapshot;
       abort.abort();
-      observer.disconnect();
+
+      resizeObserver.disconnect();
       sceneObserver.disconnect();
       visibilityObserver.disconnect();
-      cancelAnimationFrame(animationFrame);
+
+      cancelAnimationFrame(raf);
       requestDraw.current = null;
-      decoded.forEach(image => image.close());
+
+      decoded.forEach((bitmap) => bitmap.close());
       decoded.clear();
       blobs.clear();
+      loading.clear();
     };
   }, [variant]);
 
-  useGsap(context => {
-    const media = gsap.matchMedia();
-    context.add(() => {
-    media.add({ desktop: "(min-width: 768px)", mobile: "(max-width: 767px)" }, () => {
-    const container = containerRef.current;
-    if (!container) return;
-    const proxy = { frame: 0 };
-    const update = () => {
-      requestedFrame.current = Math.max(0, Math.min(INTRO_FRAME_COUNT - 1, Math.round(proxy.frame)));
-      const progress = proxy.frame / (INTRO_FRAME_COUNT - 1);
-      container.dataset.scrollProgress = progress.toFixed(4);
-      onProgress?.(progress);
-      requestDraw.current?.();
-    };
-    const timeline = gsap.timeline();
-    timeline.to(proxy, { frame: INTRO_FRAME_COUNT - 1, duration: 1, ease: "none", onUpdate: update }, 0);
-    configureTimeline?.(timeline);
-    update();
-    ScrollTrigger.create({ animation: timeline, trigger: container, start: "top top",
-      end: () => "+=" + window.innerHeight * scrollDistanceVh * timeline.duration(),
-      pin: true, pinSpacing: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true,
-    });
-    });
-    return () => media.revert();
-    });
-  }, {
-    scope: containerRef,
-    // The user explicitly wants scroll scrubbing enabled by default.
-    // Scene motion is enabled by the explicit portfolio preference.
-    respectReducedMotion: false,
-    dependencies: [scrollDistanceVh, configureTimeline, onProgress],
-  });
+  useGsap(
+    (context) => {
+      const media = gsap.matchMedia();
 
-  return { containerRef, canvasRef, isReady, hasError, prefersReducedMotion };
+      context.add(() => {
+        media.add(
+          {
+            desktop: "(min-width: 768px)",
+            mobile: "(max-width: 767px)",
+          },
+          (mediaContext) => {
+            const container = containerRef.current;
+            if (!container) return;
+
+            const isMobile = Boolean(mediaContext.conditions?.mobile);
+
+            const frameCount = isMobile
+              ? introSequence.mobile.frameCount
+              : introSequence.desktop.frameCount;
+
+            const lastFrame = frameCount - 1;
+
+            const proxy = {
+              frame: 0,
+            };
+
+            const update = () => {
+              const progress = clamp(proxy.frame / lastFrame, 0, 1);
+
+              progressRef.current = progress;
+
+              requestedFrame.current = prefersReducedMotion
+                ? 0
+                : clamp(Math.round(progress * lastFrame), 0, lastFrame);
+
+              container.dataset.scrollProgress = progress.toFixed(4);
+
+              onProgress?.(progress);
+              requestDraw.current?.();
+            };
+
+            const timeline = gsap.timeline();
+
+            timeline.to(
+              proxy,
+              {
+                frame: lastFrame,
+                duration: 1,
+                ease: "none",
+                onUpdate: update,
+              },
+              0,
+            );
+
+            configureTimeline?.(timeline);
+            update();
+
+            ScrollTrigger.create({
+              animation: timeline,
+              trigger: container,
+              start: "top top",
+              end: () =>
+                "+=" +
+                window.innerHeight * scrollDistanceVh * timeline.duration(),
+              pin: true,
+              pinSpacing: true,
+              scrub: true,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            });
+          },
+        );
+
+        return () => media.revert();
+      });
+    },
+    {
+      scope: containerRef,
+      respectReducedMotion: false,
+      dependencies: [
+        scrollDistanceVh,
+        configureTimeline,
+        onProgress,
+        prefersReducedMotion,
+      ],
+    },
+  );
+
+  return {
+    containerRef,
+    canvasRef,
+    isReady,
+    hasError,
+    prefersReducedMotion,
+  };
 }
-
-

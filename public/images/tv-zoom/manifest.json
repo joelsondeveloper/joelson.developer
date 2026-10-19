@@ -17,5 +17,27 @@
       "frameCount": 192,
       "bytes": 4608058
     }
-  ]
+  ],
+  "active": {
+    "source": "tv-zoom-60fps.mp4",
+    "fps": 60,
+    "duration": 7.933333333333334,
+    "variants": [
+      {
+        "name": "desktop-60fps",
+        "width": 1280,
+        "height": 720,
+        "frameCount": 476,
+        "bytes": 29179128
+      },
+      {
+        "name": "mobile-60fps",
+        "width": 768,
+        "height": 432,
+        "frameCount": 476,
+        "quality": 86,
+        "bytes": 15295892
+      }
+    ]
+  }
 }

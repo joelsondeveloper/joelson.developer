@@ -1,0 +1,25 @@
+{
+  "headers": {
+    "cache-control": "s-maxage=31536000",
+    "connection": "keep-alive",
+    "content-encoding": "gzip",
+    "content-type": "text/html; charset=utf-8",
+    "date": "Mon, 19 Oct 2026 19:37:45 GMT",
+    "etag": "\"kng3nz8bk8xum\"",
+    "keep-alive": "timeout=5",
+    "permissions-policy": "camera=(), microphone=(), geolocation=()",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "transfer-encoding": "chunked",
+    "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+    "link": "</_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/Caveat_Variable-s.p.3tcsxjdleg7h2.ttf>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/ttf\", </_next/static/media/LaBelleAurore_Regular-s.p.1ipp15kkx8v1t.ttf>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/ttf\", </_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+    "x-nextjs-cache": "HIT",
+    "x-nextjs-prerender": "1\n1",
+    "x-nextjs-stale-time": "300"
+  },
+  "title": "Joelson Vicente | Desenvolvedor",
+  "robots": "User-Agent: *\nDisallow: /\n\n",
+  "notFound": true,
+  "skip": true
+}

@@ -1,0 +1,81 @@
+[
+  {
+    "mobile": false,
+    "targets": [
+      {
+        "n": 0,
+        "ms": 74
+      },
+      {
+        "n": 119,
+        "ms": 632
+      },
+      {
+        "n": 238,
+        "ms": 66
+      },
+      {
+        "n": 356,
+        "ms": 147
+      },
+      {
+        "n": 475,
+        "ms": 28
+      },
+      {
+        "n": 356,
+        "ms": 27
+      },
+      {
+        "n": 238,
+        "ms": 49
+      },
+      {
+        "n": 119,
+        "ms": 111
+      },
+      {
+        "n": 0,
+        "ms": 76
+      }
+    ],
+    "active": {
+      "frameCount": "476",
+      "requestedFrame": "0",
+      "cachedFrames": "27",
+      "decodedBytes": "99532800",
+      "cacheLimit": "27",
+      "compressedFrames": "61",
+      "frameMisses": "2",
+      "frameSubstitutions": "5",
+      "draws": "14",
+      "failedFrames": "0",
+      "totalFrames": "476",
+      "variant": "desktop",
+      "frame": "0"
+    },
+    "counts": [
+      {
+        "draws": "16",
+        "cached": "27",
+        "failed": "0"
+      },
+      {
+        "draws": "16",
+        "cached": "27",
+        "failed": "0"
+      },
+      {
+        "draws": "16",
+        "cached": "27",
+        "failed": "0"
+      }
+    ],
+    "reduced": "0",
+    "resize": true,
+    "contactNavigation": true,
+    "pins": 1,
+    "errors": [],
+    "bad": []
+  }
+]

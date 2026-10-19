@@ -25,7 +25,12 @@ export function addIntroOverlayMotion(timeline: gsap.core.Timeline, overlay: HTM
 }
 
 /** Independent inner wrappers keep entrances, floating, and scroll exits additive. */
-export function animateIntroElements(overlay: HTMLElement, initialProgress: number) {
+export function animateIntroElements(overlay: HTMLElement, initialProgress: number, reduced = false) {
+  if (reduced) {
+    gsap.set(overlay.querySelectorAll("[data-entry]"), { autoAlpha: 1, y: 0 });
+    gsap.set(overlay.querySelector(".intro-name span"), { clipPath: "inset(-20% -20% -45% -20%)" });
+    return { update: () => {} };
+  }
   gsap.fromTo(overlay.querySelectorAll("[data-entry]"), { autoAlpha: 0, y: 12 }, {
     autoAlpha: 1, y: 0, duration: 0.75, stagger: 0.045, ease: "power2.out",
   });

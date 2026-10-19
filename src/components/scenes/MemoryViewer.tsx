@@ -20,7 +20,7 @@ export function MemoryViewer({ memory, origin, reduced, onClose }: { memory: Exp
     if (closing.current) return; closing.current = true;
     gsap.to(sheet.current, { opacity: 0, y: reduced ? 0 : 18, duration: reduced ? .01 : .22, onComplete: onClose });
   };
-  return <dialog ref={dialog} className={`memory-viewer memory-${memory.tone}`} aria-labelledby="memory-title" data-lenis-prevent onCancel={event => { event.preventDefault(); close(); }}>
+  return <dialog ref={dialog} className={`memory-viewer memory-${memory.tone}`} aria-labelledby="memory-title" data-lenis-prevent onCancel={event => { event.preventDefault(); onClose(); }}>
     <div className="memory-sheet" ref={sheet}>
       <header><span>ARQUIVO PESSOAL / {memory.eyebrow}</span><button type="button" onClick={close} autoFocus>← VOLTAR ÀS MEMÓRIAS</button></header>
       <div className="memory-composition">

@@ -7,7 +7,7 @@ import type { PortfolioProject } from "@/data/projects";
 function EnlargedImage({ src, title, onClose }: { src: string; title: string; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => { const node = ref.current; node?.showModal(); return () => node?.close(); }, []);
-  return <dialog ref={ref} className="project-lightbox" onCancel={e => { e.preventDefault(); e.stopPropagation(); onClose(); }}>
+  return <dialog ref={ref} className="project-lightbox" aria-label={"Imagem ampliada de " + title} onCancel={e => { e.preventDefault(); e.stopPropagation(); onClose(); }}>
     <button type="button" onClick={onClose} autoFocus>FECHAR IMAGEM ×</button>
     <div><Image src={src} alt={title} fill sizes="90vw" quality={90} style={{ objectFit: "contain" }} /></div>
   </dialog>;
