@@ -1,0 +1,86 @@
+[
+  {
+    "project": "employee-routes",
+    "source": "C:/Users/vicen/OneDrive/Imagens/Screenshots/Captura de tela 2026-10-12 094716.png",
+    "output": "C:/Users/vicen/OneDrive/Documentos/GitHub/joelson.developer/public/projects/employee-routes/image-1.webp",
+    "original": 70389,
+    "optimized": 29452,
+    "width": 1352,
+    "height": 634,
+    "lossless": true
+  },
+  {
+    "project": "employee-routes",
+    "source": "C:/Users/vicen/OneDrive/Imagens/Screenshots/Captura de tela 2026-10-12 094733.png",
+    "output": "C:/Users/vicen/OneDrive/Documentos/GitHub/joelson.developer/public/projects/employee-routes/image-2.webp",
+    "original": 481774,
+    "optimized": 152818,
+    "width": 1351,
+    "height": 627,
+    "lossless": true
+  },
+  {
+    "project": "employee-routes",
+    "source": "C:/Users/vicen/Videos/Gravações de Tela/Gravação de Tela 2026-10-12 095245.mp4",
+    "output": "C:/Users/vicen/OneDrive/Documentos/GitHub/joelson.developer/public/projects/employee-routes/demo.mp4",
+    "original": 24511097,
+    "optimized": 4734156,
+    "crf": 20
+  },
+  {
+    "project": "corinthians-premium",
+    "source": "C:/Users/vicen/OneDrive/Imagens/Screenshots/Captura de tela 2026-10-12 165429.png",
+    "output": "C:/Users/vicen/OneDrive/Documentos/GitHub/joelson.developer/public/projects/corinthians-premium/image-1.webp",
+    "original": 1048528,
+    "optimized": 553508,
+    "width": 1353,
+    "height": 621,
+    "lossless": true
+  },
+  {
+    "project": "corinthians-premium",
+    "source": "C:/Users/vicen/OneDrive/Imagens/Screenshots/Captura de tela 2026-10-12 165459.png",
+    "output": "C:/Users/vicen/OneDrive/Documentos/GitHub/joelson.developer/public/projects/corinthians-premium/image-2.webp",
+    "original": 331289,
+    "optimized": 175796,
+    "width": 1351,
+    "height": 633,
+    "lossless": true
+  },
+  {
+    "project": "corinthians-premium",
+    "source": "C:/Users/vicen/Videos/Gravações de Tela/Gravação de Tela 2026-10-12 165946.mp4",
+    "output": "C:/Users/vicen/OneDrive/Documentos/GitHub/joelson.developer/public/projects/corinthians-premium/demo.mp4",
+    "original": 37652091,
+    "optimized": 20917625,
+    "crf": 20
+  },
+  {
+    "project": "nike-ui-clone",
+    "source": "C:/Users/vicen/OneDrive/Imagens/Screenshots/Captura de tela 2026-10-12 170757.png",
+    "output": "C:/Users/vicen/OneDrive/Documentos/GitHub/joelson.developer/public/projects/nike-ui-clone/image-1.webp",
+    "original": 417160,
+    "optimized": 188930,
+    "width": 1351,
+    "height": 634,
+    "lossless": true
+  },
+  {
+    "project": "nike-ui-clone",
+    "source": "C:/Users/vicen/OneDrive/Imagens/Screenshots/Captura de tela 2026-10-12 170808.png",
+    "output": "C:/Users/vicen/OneDrive/Documentos/GitHub/joelson.developer/public/projects/nike-ui-clone/image-2.webp",
+    "original": 676445,
+    "optimized": 331332,
+    "width": 1350,
+    "height": 635,
+    "lossless": true
+  },
+  {
+    "project": "nike-ui-clone",
+    "source": "C:/Users/vicen/Videos/Gravações de Tela/Gravação de Tela 2026-10-12 171125.mp4",
+    "output": "C:/Users/vicen/OneDrive/Documentos/GitHub/joelson.developer/public/projects/nike-ui-clone/demo.mp4",
+    "original": 17009043,
+    "optimized": 6834378,
+    "crf": 20
+  }
+]

@@ -17,7 +17,7 @@ export function PortraitScene({ sceneRef }: { sceneRef: RefObject<HTMLElement | 
         <p>CRIATIVO POR NATUREZA.<br />DESENVOLVEDOR POR ESCOLHA.</p>
       </div>
       <div className="portrait-photo" data-portrait-photo>
-        <DeferredImage activation="portrait" src="/images/joelson-portrait.png" alt="Retrato em preto e branco de Joelson" width={1174} height={1339} sizes="(max-width: 767px) 95vw, 48vw" />
+        <DeferredImage activation="portrait" src="/images/joelson-portrait-new.webp" alt="Retrato em preto e branco de Joelson" width={1174} height={1339} sizes="(max-width: 767px) 95vw, 48vw" />
       </div>
       <SlotName />
       <AboutParagraphs />

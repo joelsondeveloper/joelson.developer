@@ -1,0 +1,10 @@
+# Local build caches and original asset backups are never deployed.
+.git
+.next
+node_modules
+.image-backups
+.env*
+!.env.example
+docs
+*.tsbuildinfo
+npm-debug.log*

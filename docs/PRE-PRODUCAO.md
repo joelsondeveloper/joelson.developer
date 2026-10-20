@@ -42,5 +42,5 @@ Atualização de 19/10/2026. Nenhuma publicação foi realizada.
 ## Antes da publicação
 1. Definir o domínio real e refazer o build para gerar canonical, robots e sitemap públicos.
 2. Repetir a auditoria de dependências: a tentativa de `npm audit --omit=dev` falhou com DNS `ENOTFOUND registry.npmjs.org`. O resultado de vulnerabilidades permanece desconhecido.
-3. Revisar as mídias de demonstração dos três projetos: as pastas ainda possuem `.gitkeep` e o site informa prévia em preparação. Instituições, datas e certificados também podem ser preenchidos nos dados de Experiências, quando disponíveis.
+3. Mídias dos três projetos integradas: duas capturas e um vídeo por projeto; consulte MIDIAS-PROJETOS.md. Instituições, datas e certificados ainda podem ser preenchidos nos dados de Experiências, quando disponíveis.
 4. Validar a URL de preview no provedor escolhido antes de publicar o domínio. Recursos externos e entrega real de e-mail não foram testados como envios.

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { stopScenePreparation } from "@/lib/scene-preparation";
 import { SignalPreloader } from "./SignalPreloader";
 import { introFrameUrl } from "@/lib/intro-sequence";
+import { CrtGrain } from "@/components/ui/CrtGrain";
 import { PortfolioHeader } from "@/components/ui/PortfolioHeader";
 import { gsap } from "@/lib/gsap";
 import { useGsap } from "@/hooks/use-gsap";
@@ -232,6 +233,7 @@ export function CinematicIntro() {
       <ProjectsScene sceneRef={projectsRef} />
       <ExperienceScene sceneRef={experienceRef} />
       <ContactScene sceneRef={contactRef} />
+      <CrtGrain />
       <div className="experience-transition vhs-static" aria-hidden="true">
         <span>CH 04 ▶</span>
       </div>

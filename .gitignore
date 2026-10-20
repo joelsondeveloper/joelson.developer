@@ -43,3 +43,5 @@ next-env.d.ts
 
 # Original images kept locally for reversible optimization
 /.image-backups/
+
+.vercel

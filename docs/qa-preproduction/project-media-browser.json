@@ -1,0 +1,110 @@
+[
+  {
+    "size": {
+      "width": 1350,
+      "height": 800
+    },
+    "id": "employee-routes",
+    "availability": {
+      "images": [
+        true,
+        true
+      ],
+      "video": true
+    },
+    "playbackTime": 0.716381,
+    "seek": true,
+    "gallery": true,
+    "lightbox": true
+  },
+  {
+    "size": {
+      "width": 1350,
+      "height": 800
+    },
+    "id": "corinthians-premium",
+    "availability": {
+      "images": [
+        true,
+        true
+      ],
+      "video": true
+    },
+    "playbackTime": 0.864094,
+    "seek": true,
+    "gallery": true,
+    "lightbox": true
+  },
+  {
+    "size": {
+      "width": 1350,
+      "height": 800
+    },
+    "id": "nike-ui-clone",
+    "availability": {
+      "images": [
+        true,
+        true
+      ],
+      "video": true
+    },
+    "playbackTime": 0.449046,
+    "seek": true,
+    "gallery": true,
+    "lightbox": true
+  },
+  {
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "employee-routes",
+    "availability": {
+      "images": [
+        true,
+        true
+      ],
+      "video": true
+    },
+    "playbackTime": 0.282057,
+    "seek": true,
+    "gallery": true,
+    "lightbox": true
+  },
+  {
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "corinthians-premium",
+    "availability": {
+      "images": [
+        true,
+        true
+      ],
+      "video": true
+    },
+    "playbackTime": 0.269321,
+    "seek": true,
+    "gallery": true,
+    "lightbox": true
+  },
+  {
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "id": "nike-ui-clone",
+    "availability": {
+      "images": [
+        true,
+        true
+      ],
+      "video": true
+    },
+    "playbackTime": 0.311221,
+    "seek": true,
+    "gallery": true,
+    "lightbox": true
+  }
+]

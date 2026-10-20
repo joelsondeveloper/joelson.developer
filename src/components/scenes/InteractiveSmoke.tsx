@@ -64,6 +64,7 @@ export function InteractiveSmoke({ sceneRef }: { sceneRef: RefObject<HTMLElement
     let previous: { x: number; y: number; time: number; id: number } | null = null;
     let raf = 0, lastTime = 0, elapsed = 0, frames = 0, interactions = 0;
     let lost = false, visible = true;
+    const isActive = () => scene.dataset.active === "true" && Number(scene.dataset.aboutTime || 0) < 4.46;
     const draw = () => {
       gl.uniform2f(resolution, canvas.width, canvas.height);
       gl.uniform1f(time, elapsed);
@@ -88,7 +89,7 @@ export function InteractiveSmoke({ sceneRef }: { sceneRef: RefObject<HTMLElement
     };
     const render = (now: number) => {
       raf = 0;
-      if (!visible || lost || document.hidden || scene.dataset.active !== "true") return;
+      if (!visible || lost || document.hidden || !isActive()) return;
       const delta = Math.min((now - lastTime) / 1000, .05);
       if (now - lastTime >= 1000 / 30) {
         lastTime = now; elapsed += delta;
@@ -98,9 +99,10 @@ export function InteractiveSmoke({ sceneRef }: { sceneRef: RefObject<HTMLElement
       raf = requestAnimationFrame(render);
     };
     const sync = () => {
+      if (raf && visible && !lost && !document.hidden && isActive()) return;
       cancelAnimationFrame(raf); raf = 0;
       previous = null;
-      if (visible && !lost && !document.hidden && scene.dataset.active === "true") {
+      if (visible && !lost && !document.hidden && isActive()) {
         lastTime = performance.now(); raf = requestAnimationFrame(render);
       }
     };
@@ -124,7 +126,7 @@ export function InteractiveSmoke({ sceneRef }: { sceneRef: RefObject<HTMLElement
     const viewportObserver = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); });
     viewportObserver.observe(scene);
     resizeObserver.observe(scene);
-    activeObserver.observe(scene, { attributes: true, attributeFilter: ["data-active"] });
+    activeObserver.observe(scene, { attributes: true, attributeFilter: ["data-active", "data-about-time"] });
     scene.addEventListener("pointermove", pointer, { passive: true });
     scene.addEventListener("pointerdown", pointer, { passive: true });
     for (const type of ["pointerleave", "pointerup", "pointercancel"]) scene.addEventListener(type, resetPointer);

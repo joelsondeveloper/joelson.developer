@@ -1,0 +1,38 @@
+[
+  {
+    "mobile": false,
+    "photo": true,
+    "grainScope": true,
+    "fluidInteractions": 25,
+    "sound": [
+      {
+        "peak": 0.11734890192747116,
+        "state": "running"
+      },
+      {
+        "peak": 0.028929566964507103,
+        "state": "running"
+      }
+    ],
+    "mute": true,
+    "errors": []
+  },
+  {
+    "mobile": true,
+    "photo": true,
+    "grainScope": true,
+    "fluidInteractions": 15,
+    "sound": [
+      {
+        "peak": 0.11588457971811295,
+        "state": "running"
+      },
+      {
+        "peak": 0.11232524365186691,
+        "state": "running"
+      }
+    ],
+    "mute": true,
+    "errors": []
+  }
+]

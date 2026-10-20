@@ -1,0 +1,9 @@
+{
+  "url": "https://joelson-dev.vercel.app",
+  "errors": [],
+  "bad": [],
+  "navigation": true,
+  "media": true,
+  "textVersion": true,
+  "robots": "User-Agent: *\nAllow: /\n\nHost: https://joelson-dev.vercel.app\nSitemap: https://joelson-dev.vercel.app/sitemap.xml\n"
+}

@@ -32,9 +32,9 @@ export class SmokeFluid {
     const distance = Math.hypot((x1 - x0) * w, (y1 - y0) * h);
     if (distance < .05 || distance > Math.max(w, h) * .6) return;
     const steps = Math.min(24, Math.max(1, Math.ceil(distance / 2)));
-    const vx = Math.max(-180, Math.min(180, (x1 - x0) * w / seconds)) * seconds * 13.5;
-    const vy = Math.max(-180, Math.min(180, (y1 - y0) * h / seconds)) * seconds * 13.5;
-    const radius = 3.4;
+    const vx = Math.max(-180, Math.min(180, (x1 - x0) * w / seconds)) * seconds * 6.0;
+    const vy = Math.max(-180, Math.min(180, (y1 - y0) * h / seconds)) * seconds * 6.0;
+    const radius = 4.8;
     for (let step = 0; step < steps; step++) {
       const t = (step + .5) / steps;
       const cx = (x0 + (x1 - x0) * t) * (w - 1);
@@ -43,8 +43,8 @@ export class SmokeFluid {
         for (let x = Math.max(1, Math.floor(cx - radius * 2)); x < Math.min(w - 1, cx + radius * 2); x++) {
           const weight = Math.exp(-((x - cx) ** 2 + (y - cy) ** 2) / (radius * radius)) / steps;
           const i = y * w + x;
-          this.u[i] = Math.max(-80, Math.min(80, this.u[i] + vx * weight));
-          this.v[i] = Math.max(-80, Math.min(80, this.v[i] + vy * weight));
+          this.u[i] = Math.max(-35, Math.min(35, this.u[i] + vx * weight));
+          this.v[i] = Math.max(-35, Math.min(35, this.v[i] + vy * weight));
         }
       }
     }
@@ -61,7 +61,19 @@ export class SmokeFluid {
 
   step(dt: number) {
     const w = this.width, h = this.height;
-    const drag = Math.exp(-dt * 1.2), relax = Math.exp(-dt * .8);
+    const drag = Math.exp(-dt * 3.8), relax = Math.exp(-dt * .20);
+    // Implicit viscosity spreads shear across neighboring cells instead of sharp eddies.
+    // Four bounded implicit passes keep this stable for the capped 50 ms timestep.
+    const viscosity = dt * 24, divisor = 1 + 4 * viscosity;
+    this.nextU.set(this.u); this.nextV.set(this.v);
+    for (let pass = 0; pass < 4; pass++) {
+      for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) {
+        const i = y * w + x;
+        this.nextU[i] = (this.u[i] + viscosity * (this.nextU[i-1] + this.nextU[i+1] + this.nextU[i-w] + this.nextU[i+w])) / divisor;
+        this.nextV[i] = (this.v[i] + viscosity * (this.nextV[i-1] + this.nextV[i+1] + this.nextV[i-w] + this.nextV[i+w])) / divisor;
+      }
+    }
+    this.u.set(this.nextU); this.v.set(this.nextV);
     // Transport momentum with the flow, instead of attaching it to the current cursor.
     for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) {
       const i = y * w + x, px = x - this.u[i] * dt, py = y - this.v[i] * dt;

@@ -1,0 +1,38 @@
+{
+  "before": [
+    {
+      "seconds": 1,
+      "velocityNorm": 440.54892251931705
+    },
+    {
+      "seconds": 2,
+      "velocityNorm": 111.38019330016387
+    },
+    {
+      "seconds": 4,
+      "velocityNorm": 9.739999803059206
+    },
+    {
+      "seconds": 30,
+      "velocityNorm": 2.720217542205093e-13
+    }
+  ],
+  "after": [
+    {
+      "seconds": 1,
+      "velocityNorm": 126.078356243357
+    },
+    {
+      "seconds": 2,
+      "velocityNorm": 1.5746775124170007
+    },
+    {
+      "seconds": 4,
+      "velocityNorm": 0.00046560278727623717
+    },
+    {
+      "seconds": 30,
+      "velocityNorm": 6.283413563723755e-43
+    }
+  ]
+}

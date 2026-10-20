@@ -3,6 +3,7 @@
 import { Component, type ReactNode, type RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { useVhsSounds } from "@/hooks/use-vhs-sounds";
 import { projects } from "@/data/projects";
 import { ProjectPlayer } from "./ProjectPlayer";
 import { sceneLayout } from "./scene-layout";
@@ -16,6 +17,7 @@ class SceneBoundary extends Component<{ children: ReactNode; onError: () => void
 }
 export function ProjectsScene({ sceneRef }: { sceneRef: RefObject<HTMLElement | null> }) {
   const root = sceneRef;
+  const sounds = useVhsSounds(sceneRef);
   const controller = useRef<VhsController>({ tapes: {} }), hits = useRef<(HTMLButtonElement | null)[]>([]), progress = useRef(0);
   const returnFocus = useRef<number | null>(null), timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [near, setNear] = useState(false), [active, setActive] = useState(false), [fallback, setFallback] = useState(false);
@@ -65,12 +67,12 @@ export function ProjectsScene({ sceneRef }: { sceneRef: RefObject<HTMLElement | 
   }, [mode, reduced]);
   const select = (index: number) => { if (!active) return; returnFocus.current = index; setSelected(index); setMode("inspect"); setRotation(0); setDrag(false); };
   const grab = (index: number) => { returnFocus.current = index; setSelected(index); setMode("dragging"); };
-  const insert = (index: number) => { setSelected(index); setMode(fallback ? "tuning" : "inserting"); };
-  const eject = () => { if (fallback) ejected(); else setMode("ejecting"); };
+  const insert = (index: number) => { sounds.play("insert"); setSelected(index); setMode(fallback ? "tuning" : "inserting"); };
+  const eject = () => { sounds.play("eject"); if (fallback) ejected(); else setMode("ejecting"); };
   return <section id="projetos" className="projects-section projects-embedded" ref={root} data-fallback={fallback} data-path-progress="0" data-mode={mode} data-selected={selected !== null} data-active={active} aria-hidden={!active} inert={!active} aria-labelledby="projects-heading">
     <div className="projects-screen">
       <div className="projects-room" aria-hidden="true" style={near ? { backgroundImage: "url('/images/projects/liminal-vhs.webp')" } : undefined} />
-      <div className="projects-heading"><p className="projects-kicker">IDEIAS GRAVADAS. EXPERIÊNCIAS REAIS.</p><h2 id="projects-heading">Escolha<br /><em>uma história.</em></h2><p>Role para descobrir as fitas.<br />Selecione para girar ou arraste direto ao tocador.</p></div>
+      <div className="projects-heading"><p className="projects-kicker">IDEIAS GRAVADAS. EXPERIÊNCIAS REAIS.</p><h2 id="projects-heading">Escolha<br /><em>uma história.</em></h2><p>Role para descobrir as fitas.<br />Selecione para girar ou arraste direto ao tocador.</p><button type="button" className="vhs-sound-toggle" aria-pressed={!sounds.muted} onClick={sounds.toggle}>SOM DAS FITAS: {sounds.muted ? "DESLIGADO" : "LIGADO"}</button></div>
       <div className="projects-dimmer" aria-hidden="true" />
       <div className="vcr-stage" data-vcr-stage data-mode={mode} aria-hidden="true">
         {near && !fallback && <SceneBoundary onError={failed}><VhsScene selected={selected} mode={mode} drag={drag} rotation={rotation} reduced={reduced} progress={progress} onReady={ready} onRegister={register} onHit={updateHit} onSelect={select} onGrab={grab} onInsert={insert} onInserted={inserted} onEjected={ejected} onReturn={ejected} /></SceneBoundary>}

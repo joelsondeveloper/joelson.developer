@@ -1,0 +1,8 @@
+{
+  "state": {
+    "visible": "true",
+    "animation": "none",
+    "pointerEvents": "none"
+  },
+  "smokeFallback": true
+}

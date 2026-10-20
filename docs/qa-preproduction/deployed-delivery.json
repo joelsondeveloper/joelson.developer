@@ -1,0 +1,18 @@
+{
+  "canonical": "https://joelson-dev.vercel.app",
+  "sitemap": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n<url>\n<loc>https://joelson-dev.vercel.app/</loc>\n<changefreq>monthly</changefreq>\n<priority>1</priority>\n</url>\n</urlset>\n",
+  "media": [
+    {
+      "id": "employee-routes",
+      "status": 206
+    },
+    {
+      "id": "corinthians-premium",
+      "status": 206
+    },
+    {
+      "id": "nike-ui-clone",
+      "status": 206
+    }
+  ]
+}

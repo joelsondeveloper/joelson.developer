@@ -55,7 +55,7 @@ export function startScenePreparation() {
   if (started) return;
   started = true; controller = new AbortController();
   for (const job of jobs.values()) if (job.status === "failed") job.status = "queued";
-  enqueue("/images/joelson-portrait.png", 1, () => prepareImage("/images/joelson-portrait.png", "(max-width: 767px) 95vw, 48vw"));
+  enqueue("/images/joelson-portrait-new.webp", 1, () => prepareImage("/images/joelson-portrait-new.webp", "(max-width: 767px) 95vw, 48vw"));
   const photos = ["curiosity","science","creativity","education","development","experiments","growth","collaboration","future"];
   photos.forEach((name, index) => {
     const src = "/images/about-polaroids/" + name + ".jpg", asset = imageAssets[src];
